@@ -29,5 +29,6 @@ enum Errors string_to_int(const char *str_number, long long int *int_result_numb
 
 enum Errors factorial_x(long long int number_x, unsigned long long int *result_fact_x);
 
+int is_prime(long long int number_x);
 
 #endif

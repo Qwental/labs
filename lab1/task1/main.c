@@ -37,20 +37,35 @@ enum Errors factorial_x(long long int number_x, unsigned long long int *result_f
 	return E_SUCCESS;
 }
 
+int is_prime(long long int number_x)
+{
+	if (number_x < 0)
+		number_x = -number_x;
+	if ((number_x == 2) || (number_x == 3))
+		return 1;
+	if ((number_x < 2) || (((number_x % 2) == 0) || ((number_x % 3) == 0)))
+		return 0;
+	for (int j = 5; j * j <= number_x; j += 6)
+	{
+		if (((number_x % j) == 0) || ((number_x % (j + 2)) == 0))
+			return 0;
+	}
+}
+
 #if 1
 int main(int argc, char *argv[])
 {
-	# if 0
+#if 0
 	setlocale(LC_ALL, "Rus");
 	SetConsoleCP(1251); //установка кодовой страницы win-cp 1251 в поток ввода
 	SetConsoleOutputCP(1251); //установка кодовой страницы win-cp 1251 в поток вывода
 	// запускайте на linux =)
-	#endif
+#endif
 
 	if (argc != 3)
 	{
 		printf("ERROR: Некоррекный ввод, аргументов должно быть 2!\n");
-		// нужно вернуть ошибку
+		// нужно вернуть ошибку с кодом возврата
 		return E_NOT_ENOUGH_PARAMS;
 	}
 
@@ -77,7 +92,20 @@ int main(int argc, char *argv[])
 		break;
 
 	case 'p':
-		// TODO либо решето либо перебор до корня
+		if (number_x == 1)
+		{
+			printf("Число 1 — не является ни простым, ни составным числом!\n");
+			break;
+		}
+
+		if (is_prime(number_x))
+		{
+			printf("Число %lld является простым\n", number_x);
+		}
+		else
+		{
+			printf("Число %lld является составным\n", number_x);
+		}
 		break;
 	case 's':
 		// TODO s параметр
@@ -111,10 +139,9 @@ int main(int argc, char *argv[])
 		break;
 
 	default:
-		printf("ERROR: Некоррекный ввод аргументов, такого ФЛАГА нет: %s\n", argv[1]);
+		printf("ERROR: Некоррекный ввод аргументов, такого ФЛАГА %s не предусмотрено!\n", argv[1]);
 		return E_INVALID_ARG;
 	}
-	
 
 	return E_SUCCESS;
 }
