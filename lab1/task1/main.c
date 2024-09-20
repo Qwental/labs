@@ -8,7 +8,7 @@ enum Errors string_to_int(const char *str_number, long long int *int_result_numb
 
 	if (*int_result_number == LLONG_MAX || *int_result_number == LLONG_MIN)
 	{
-		printf("Переполнение типа long long int\n");
+		printf("ERROR: Переполнение типа long long int\n");
 		return E_TYPE_OVERFLOW;
 	}
 
@@ -113,21 +113,7 @@ char digit_to_16(int num)
 	}
 }
 
-enum Errors covert_to_16(long long int number, char *result_conv_to_16[], int *length)
-{
-	// int i=0;
-	// while(number > 0)
-	// {
-	// 	(*result_conv_to_16)[i] = digit_to_16(number % 16);
-	// 	number = number / 16;
-	// 	i++;
-	// 	*length++;
-	// }
 
-	// for(int j = 0; j < *length;j++){
-	// 	printf("%s ", result_conv_to_16[j]);
-	// }
-}
 
 int main(int argc, char *argv[])
 {
