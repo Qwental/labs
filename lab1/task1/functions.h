@@ -22,7 +22,7 @@ enum Errors{
     E_INVALID_INPUT = -1, /* некорректный ввод */
     E_NOT_ENOUGH_PARAMS = -2, /* отсутвует аргумент */
     E_INVALID_ARG = -3, /* неправильный аргумент */
-    E_NOT_ENOUGH_MEMORY = -4 /* недостаточно памяти для записи значения некоторого типа */
+    E_TYPE_OVERFLOW = -4 /* недостаточно памяти для записи значения некоторого типа */
 };
 
 enum Errors string_to_int(const char *str_number, long long int *int_result_number, int base);
@@ -31,4 +31,10 @@ enum Errors factorial_x(long long int number_x, unsigned long long int *result_f
 
 int is_prime(long long int number_x);
 
-#endif
+enum Errors sum_of_prime_numbers(long long int number_x, unsigned long long int *prime_numbers_sum);
+
+enum Errors build_table(unsigned long long int *table_e,long long int number_x);
+
+char digit_to_16(int num);
+
+#endif // __FUNCTIONS_H__
