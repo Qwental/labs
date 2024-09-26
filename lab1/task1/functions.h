@@ -8,7 +8,7 @@
 #include <limits.h>
 
 # if 0
-/* Лалка пиши по русски */
+/*  пиши по русски */
 #include <locale.h>
 #include <Windows.h>
 #include <stdio.h>

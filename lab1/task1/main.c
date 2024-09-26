@@ -76,6 +76,7 @@ enum Errors build_table(unsigned long long int *table_e, long long int number_x)
 
 char digit_to_16(int num)
 {
+	
 	switch (num)
 	{
 	case 0:
