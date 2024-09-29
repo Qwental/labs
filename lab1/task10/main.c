@@ -1,9 +1,6 @@
 #include "functions.h"
 
-
 // gcc main.c -lm -std=c99 -Woverflow -g -Wall
-
-
 
 enum Errors delete_zeros_from_num(char *temp_number, unsigned long long num_length)
 {
@@ -183,14 +180,12 @@ int main()
     int base_of_num_system = 0;
 
     cheak_scanf = scanf("%d", &base_of_num_system);
+    getchar(); // EAT THE SPACE!
     if ((cheak_scanf != 1) || ((base_of_num_system > 36) || (base_of_num_system < 2)))
     {
         printf("ERROR: Некорректный ввод основания системы счисления\n");
         return E_INVALID_INPUT;
     }
-
-    // char *all_base_digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    getchar(); // EAT THE SPACE!
 
     long long int current_num_string_length = 0;
     long long int current_num_length = 0;
@@ -201,15 +196,11 @@ int main()
     long long int current_number = 0;
     enum Errors err;
 
-    // convert_to_decimal("111",2,&result);
-    // printf("%lld\n", result);
-
     int correct_input_flag = 0;
 
 #if 1
     while (1)
     {
-
         char *input_number = read_number_string();
 
         if (!input_number)
