@@ -1,5 +1,5 @@
 #include "functions.h"
-#define INITIAL_SIZE 36
+
 
 // gcc main.c -lm -std=c99 -Woverflow -g -Wall
 
@@ -282,6 +282,3 @@ int main()
 
     return E_SUCCESS;
 }
-
-// TODO функции куда нада header
-// TODO А ЕСЛИ БУДЕТ ТОЛЬКО ВВЕДЕНО STOP?
