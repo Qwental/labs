@@ -1,8 +1,9 @@
 /.vscode
+/.idea
+/.vs
+/.cmake-build-debug
+/.build
 *.out
 *.exe
 *.o
 *.xml
-/.idea
-/.vs
-/.cmake-build-debug
