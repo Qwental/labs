@@ -1,5 +1,5 @@
 #include "functions.h"
-// gcc main.c -lm -std=c99 -Woverflow
+// gcc main.c -lm -std=c99 -Woverflow -Wall
 
 double factorial(int n)
 {
@@ -169,6 +169,13 @@ int main(int argc, char *argv[])
 		printf("ERROR: Переполнения типа, невалидное число\n");
 		return E_INVALID_ARG;
 	}
+
+	if(!(fabs(x)>1))
+{
+		printf("ERROR: Невалидное число x для C) и D)\n");
+		return E_INVALID_ARG;
+	}
+	
 
 	if (func_c(x, epsilon, &sigma) == E_SUCCESS)
 		printf("Ряд с): %lf\n", sigma);
