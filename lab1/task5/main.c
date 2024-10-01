@@ -102,13 +102,13 @@ enum Errors func_d(double x, double epsilon, double *sigma_sum)
 	if (sigma_sum == NULL)
 		return E_INVALID_INPUT;
 
-	int n = 0;
+	int n = 1;
 	double f = 1.0;
 	*sigma_sum = 0.0;
 
 	while (fabs(f) > epsilon)
 	{
-		f = ((pow(-1, n) * (2 * n + 1) * (factorial(2 * n) / pow(factorial(n), 2))) * pow((x / 2), 2 * n));
+		f = ((pow(-1, n) * (pow(x,2*n)/pow(2,2*n))* (factorial(2 * n - 1) / pow(factorial(n), 2))) );
 		*sigma_sum += f;
 		n++;
 		if (n > INT_MAX - 1)
@@ -170,19 +170,24 @@ int main(int argc, char *argv[])
 		return E_INVALID_ARG;
 	}
 
-	if(!(fabs(x)>1))
-{
-		printf("ERROR: Невалидное число x для C) и D)\n");
-		return E_INVALID_ARG;
-	}
-	
 
+	if((fabs(x)>=1)){
+		printf("Ряд c расходиться!\n");
+	}
+	else{
 	if (func_c(x, epsilon, &sigma) == E_SUCCESS)
 		printf("Ряд с): %lf\n", sigma);
 	else
 	{
 		printf("ERROR: Переполнения типа, невалидное число\n");
 		return E_INVALID_ARG;
+	}
+	}
+
+
+	if((fabs(x)>=1)){
+		printf("Ряд d расходиться!\n");
+		return E_INVALID_INPUT;
 	}
 
 	if (func_d(x, epsilon, &sigma) == E_SUCCESS)

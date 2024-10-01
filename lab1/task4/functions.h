@@ -20,7 +20,7 @@ enum Errors
     E_MEMORY_ALLOCATION = -5, /* Ошибка выделении памяти */
     E_CANNOT_OPEN_FILE = -6,  /* Ошибка ОТКРЫТИЯ ФАЙЛА */
 };
-
+char *convert_to_your_base_from_10CC(long long int number, int base);
 const char *find_file_name(const char *file_string);
 enum Errors delete_arabic_funny_numbers(const char *file_input, const char *file_output);
 enum Errors how_many_latin_symbols_for_each_line(const char *file_input, const char *file_output);

@@ -1,6 +1,6 @@
 #include "functions.h"
 // gcc main.c -lm -std=c99 -Woverflow
-
+// TODO TASK3
 
 int main(int argc, char *argv[])
 {

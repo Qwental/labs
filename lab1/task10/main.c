@@ -92,7 +92,6 @@ enum Errors convert_to_decimal(char *number_string, int base, long long int *num
     }
     int sign = 1;
     char *ptr = NULL;
-    // TODO CHEAK BASE
     if (*number_string == '-')
     {
         sign = -1;
@@ -233,7 +232,7 @@ int main()
         delete_zeros_from_num(temp_number, current_num_string_length);
 
         current_num_length = strlen(temp_number);
-        puts(temp_number);
+        //puts(temp_number);
 
         if ((current_num_length >= max_num_length))
         {
