@@ -1,19 +1,17 @@
-#ifndef __FUNCTIONS_H__
-#define __FUNCTIONS_H__
+#ifndef __task5_main_H__
+#define __task5_main_H__
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include <string.h>
-#include <limits.h>
 #include <ctype.h>
 #include <float.h>
-
+#include <limits.h>
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #define INITIAL_SIZE 36
-#define MAX_EPS_LEN 10
 
-
+/* ERROR CODES */
 enum Errors
 {
     E_SUCCESS = 0,            /* успешное завершение */
@@ -23,14 +21,8 @@ enum Errors
     E_TYPE_OVERFLOW = -4,     /* недостаточно памяти для записи значения некоторого типа */
     E_MEMORY_ALLOCATION = -5, /* Ошибка выделении памяти */
     E_CANNOT_OPEN_FILE = -6,  /* Ошибка ОТКРЫТИЯ ФАЙЛА */
+    E_SERIES_DIVERGENCE = -7, /* РЯД рассходиться */
+
 };
 
-double factorial(int n);
-enum Errors string_to_double(const char *str, double *num);
-enum Errors func_a(double x, double epsilon, double *sigma_sum);
-enum Errors func_b(double x, double epsilon, double *sigma_sum);
-enum Errors func_c(double x, double epsilon, double *sigma_sum);
-enum Errors func_d(double x, double epsilon, double *sigma_sum);
-
-
-#endif // __FUNCTIONS_H__
+#endif // __task5_main_H__
