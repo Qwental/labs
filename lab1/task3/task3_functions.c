@@ -104,14 +104,8 @@ enum Errors string_to_int(const char *str_number, long long int *int_result_numb
     return E_SUCCESS;
 }
 
-
-
-
-
-
-
-
-enum Errors flag_t_is_sides_triangle_possible(const double eps, const double sides[], int* result){
+enum Errors flag_t_is_sides_triangle_possible(const double eps, const double sides[], int *result)
+{
     if (result == NULL)
         return E_INVALID_INPUT;
     double sorted_sides[3];
@@ -119,9 +113,12 @@ enum Errors flag_t_is_sides_triangle_possible(const double eps, const double sid
         sorted_sides[i] = sides[i];
     double temp;
 
-    for (int i = 0; i < 2; i++) {
-        for (int j = i + 1; j < 3; j++) {
-            if (sorted_sides[i] > sorted_sides[j]) {
+    for (int i = 0; i < 2; i++)
+    {
+        for (int j = i + 1; j < 3; j++)
+        {
+            if (sorted_sides[i] > sorted_sides[j])
+            {
                 temp = sorted_sides[i];
                 sorted_sides[i] = sorted_sides[j];
                 sorted_sides[j] = temp;
@@ -129,34 +126,65 @@ enum Errors flag_t_is_sides_triangle_possible(const double eps, const double sid
         }
     }
 
-    //Теорема Пифагора
-    if (fabs(sorted_sides[0] * sorted_sides[0] + sorted_sides[1] * sorted_sides[1] - sorted_sides[2] * sorted_sides[2]) < eps) {
+    // Теорема Пифагора
+    if (fabs(sorted_sides[0] * sorted_sides[0] + sorted_sides[1] * sorted_sides[1] - sorted_sides[2] * sorted_sides[2]) < eps)
+    {
         *result = 1;
-    } else {
+    }
+    else
+    {
         *result = 0;
     }
     return E_SUCCESS;
 }
 
+int solve_quadratic(double epsilon, double a, double b, double c, double *root1, double *root2)
+{
+    double discriminant = b * b - 4 * a * c;
 
+    if (fabs(discriminant) < epsilon)
+    {
+        discriminant = 0.0;
+    }
 
-int solve_quadratic(double epsilon, double a, double b, double c, double* root1, double* root2) {
-	double discriminant = b * b - 4 * a * c;
-
-	if (fabs(discriminant) < epsilon) {
-		discriminant = 0.0;
-	}
-
-	if (discriminant < 0) {
-		return 0;
-	} else if (discriminant == 0) {
-		*root1 = -b / (2 * a);
-		return 1;
-	} else {
-		double sqrt_discriminant = sqrt(discriminant);
-		*root1 = (-b + sqrt_discriminant) / (2 * a);
-		*root2 = (-b - sqrt_discriminant) / (2 * a);
-		return 2;
-	}
+    if (discriminant < 0)
+    {
+        return 0;
+    }
+    else if (discriminant == 0)
+    {
+        *root1 = -b / (2 * a);
+        return 1;
+    }
+    else
+    {
+        double sqrt_discriminant = sqrt(discriminant);
+        *root1 = (-b + sqrt_discriminant) / (2 * a);
+        *root2 = (-b - sqrt_discriminant) / (2 * a);
+        return 2;
+    }
 }
 
+enum Errors flag_q_Permutation_ABC_Print(double epsilon, double a, double b, double c, double* root1, double* root2)
+{
+    double permutations[6][3] = {{a, b, c}, {a, c, b}, {b, a, c}, {b, c, a}, {c, a, b}, {c, b, a}};
+    for (int i = 0; i < 6; i++)
+    {
+        *root1 = 0.0;
+        *root2 = 0.0;
+        int num_roots = solve_quadratic(epsilon, permutations[i][0], permutations[i][1], permutations[i][2], root1, root2);
+        puts("---------------------------------------------------------------------------------------------------");
+        printf("a = %.15lf, b = %.15lf, c = %.15lf\n\n", permutations[i][0], permutations[i][1],
+		       permutations[i][2]);
+        if (num_roots == 0)
+            printf("Нет вещественных корней \n");
+        else if (num_roots == 1)
+            printf("Один корень (Касание параболы): %.15lf\n", *root1);
+        else if (num_roots == 2)
+            printf("Два корня: %.15lf, %.15lf\n", *root1, *root2);
+    }
+    puts("---------------------------------------------------------------------------------------------------");
+
+
+    return E_SUCCESS;
+}

@@ -75,23 +75,11 @@ int main(int argc, char *argv[])
             print_Errors(error);
             return error;
         }
-        /*
-                printf("eps = %lf\n", epsilon);
-                printf("a = %lf\n", senior_coefficient_a);
-                printf("b = %lf\n", middle_coefficient_b);
-                printf("c = %lf\n", junior_coefficient_c);
-        */
 
         double root1;
         double root2;
-        int num_roots = solve_quadratic(epsilon, senior_coefficient_a, middle_coefficient_b, junior_coefficient_c, &root1, &root2);
 
-        if (num_roots == 0)
-            printf("Нет вещественных корней \n");
-        else if (num_roots == 1)
-            printf("Один корень (Касание параболы): %.15lf\n", root1);
-        else if (num_roots == 2)
-            printf("Два корня: %.15lf, %.15lf\n", root1, root2);
+        flag_q_Permutation_ABC_Print(epsilon, senior_coefficient_a, middle_coefficient_b, junior_coefficient_c, &root1, &root2);
 
         break;
 
