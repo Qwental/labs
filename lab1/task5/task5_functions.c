@@ -1,6 +1,6 @@
 #include "task5_functions.h"
 
-int is_double_overflow(double to_check)
+enum Errors is_double_overflow(double to_check)
 {
 	if ((fabs(to_check) > DBL_MAX) || to_check == HUGE_VAL || to_check == -HUGE_VAL || isnan(to_check) || isinf(to_check))
 	{

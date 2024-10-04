@@ -1,12 +1,13 @@
-#ifndef __FUNCTIONS_H__
-#define __FUNCTIONS_H__
+#ifndef __task3_main_H__
+#define __task3_main_H__
 
+#include <ctype.h>
+#include <float.h>
+#include <limits.h>
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include <string.h>
-#include <limits.h>
-#include <ctype.h>
 
 #define INITIAL_SIZE 36
 
@@ -19,7 +20,7 @@ enum Errors
     E_TYPE_OVERFLOW = -4,     /* недостаточно памяти для записи значения некоторого типа */
     E_MEMORY_ALLOCATION = -5, /* Ошибка выделении памяти */
     E_CANNOT_OPEN_FILE = -6,  /* Ошибка ОТКРЫТИЯ ФАЙЛА */
+
 };
 
-
-#endif // __FUNCTIONS_H__
+#endif // __task3_main_H__

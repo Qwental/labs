@@ -7,7 +7,9 @@
 
 ./task4.out -a /mnt/c/Users/Holiday/Desktop/Labs/labs/lab1/task4/test/digits
 
-./task4.out -a /mnt/c/Users/Holiday/Desktop/Labs/labs/lab1/task4/test/digits digits
+./task4.out -na /mnt/c/Users/Holiday/Desktop/Labs/labs/lab1/task4/test/digits digits
+./task4.out -na /mnt/c/Users/Holiday/Desktop/Labs/labs/lab1/task4/test/digits /mnt/c/Users/Holiday/Desktop/Labs/labs/lab1/task4/test/digits
+
 
 */
 int main(int argc, char *argv[])

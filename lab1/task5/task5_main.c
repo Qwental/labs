@@ -42,55 +42,84 @@ int main(int argc, char *argv[])
 	}
 
 	double sigma = 0.0;
+	enum Errors err;
+	// a
 
-	if (func_a(x, epsilon, &sigma) == E_SUCCESS)
+	err = func_a(x, epsilon, &sigma);
+	if (err == E_SUCCESS)
 		printf("Ряд а): %.15lf\n", sigma);
-	else
+
+	else if (err == E_TYPE_OVERFLOW)
 	{
-		printf("ERROR: Переполнения типа, невалидное число\n");
+		printf("a) ERROR: Переполнения типа, невалидное число\n");
 		return E_INVALID_ARG;
 	}
-	enum Errors err;
-	err = (func_b(x, epsilon, &sigma));
-	// printf("%d", err);
-	if (func_b(x, epsilon, &sigma) == E_SUCCESS)
-
-		printf("Ряд b): %.15lf\n", sigma);
-
 	else
 	{
-		printf("ERROR: Переполнения типа, невалидное число\n");
+		printf("a) ERROR: Некорректный ввод\n");
+		return E_INVALID_INPUT;
+	}
+	// b
+
+	err = (func_b(x, epsilon, &sigma));
+	if (err == E_SUCCESS)
+		printf("Ряд b): %.15lf\n", sigma);
+
+	else if (err == E_TYPE_OVERFLOW)
+	{
+		printf("Ряд b) ERROR: Переполнения типа, невалидное число\n");
 		return E_INVALID_ARG;
+	}
+	else
+	{
+		printf("Ряд b) ERROR: Некорректный ввод\n");
+		return E_INVALID_INPUT;
 	}
 
 	if ((fabs(x) >= 1))
 	{
-		printf("Ряд c расходиться!\n");
+		printf("Ряд c) расходиться!\n");
 	}
 	else
-	{	
+	{
+		// c
+
 		err = (func_c(x, epsilon, &sigma));
-		if (func_c(x, epsilon, &sigma) == E_SUCCESS)
-			printf("Ряд с): %.15lf\n", sigma);
+		if (err == E_SUCCESS)
+			printf("Ряд c): %.15lf\n", sigma);
+
+		else if (err == E_TYPE_OVERFLOW)
+		{
+			printf("Ряд c) ERROR: Переполнения типа, невалидное число\n");
+			return E_INVALID_ARG;
+		}
 		else
 		{
-			printf("ERROR: Переполнения типа, невалидное число\n");
-			return E_INVALID_ARG;
+			printf("Ряд c) ERROR: Некорректный ввод\n");
+			return E_INVALID_INPUT;
 		}
 	}
 
 	if ((fabs(x) >= 1))
 	{
-		printf("Ряд d расходиться!\n");
+		printf("Ряд d) расходиться!\n");
 		return E_SUCCESS;
 	}
 
-	if (func_d(x, epsilon, &sigma) == E_SUCCESS)
+	// d
+	err = (func_d(x, epsilon, &sigma));
+	if (err == E_SUCCESS)
 		printf("Ряд d): %.15lf\n", sigma);
+
+	else if (err == E_TYPE_OVERFLOW)
+	{
+		printf("Ряд d) ERROR: Переполнения типа, невалидное число\n");
+		return E_INVALID_ARG;
+	}
 	else
 	{
-		printf("ERROR: Переполнения типа, невалидное число\n");
-		return E_INVALID_ARG;
+		printf("Ряд d) ERROR: Некорректный ввод\n");
+		return E_INVALID_INPUT;
 	}
 
 	return E_SUCCESS;

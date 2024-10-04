@@ -190,11 +190,7 @@ enum Errors change_symbols_to_ascii_code(const char *file_input, const char *fil
             if ((ch >= '0' && ch <= '9') || ch == '\n')
                 fprintf(file_2, "%c", ch);
             else
-            {
-                //  fprintf(file_2, "%X", ch); // %X -Плоха, Горнер круч
-                //printf("%c = %d ",ch,ch);
                 fprintf(file_2, "%s", convert_to_your_base_from_10CC((int)ch, 16)); // %X -Плоха, Горнер круч
-            }
         }
         fclose(file_1);
         fclose(file_2);

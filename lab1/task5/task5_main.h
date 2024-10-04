@@ -9,6 +9,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "task5_functions.h"
+
 #define INITIAL_SIZE 36
 
 /* ERROR CODES */
