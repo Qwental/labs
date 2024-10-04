@@ -49,7 +49,6 @@ enum Errors convert_to_decimal(char *number_string, int base, long long int *num
         return E_INVALID_INPUT;
     }
     *number = 0;
-    puts(number_string);
     char *ptr = NULL;
     ptr = number_string;
     while (*ptr)

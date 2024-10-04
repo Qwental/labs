@@ -33,6 +33,7 @@ int main(int argc, char *argv[])
         return E_CANNOT_OPEN_FILE;
     }
 
+    // Проверка на file_name != file_name
     if (strcmp(find_file_name(argv[1]), find_file_name(argv[2])) == 0)
     {
         printf("ERROR: Нужно ввести два файла с разными именами\n");
@@ -83,7 +84,6 @@ int main(int argc, char *argv[])
         {
             number_str[i] = '\0';
             i = 0;
-            puts(number_str);
 
             int minBase = findMinBase(number_str);
             if (convert_to_decimal(number_str, minBase, &number_decimal) == E_SUCCESS)
@@ -92,7 +92,10 @@ int main(int argc, char *argv[])
             }
             else
             {
-                printf("ERROR: Неккорекный ввод -_- %d \n", convert_to_decimal(number_str, minBase, &number_decimal));
+                printf("ERROR: Неккорекный ввод \n");
+                free(number_str);
+                fclose(input_file);
+                fclose(output_file);
                 return E_INVALID_INPUT;
             }
         }
@@ -101,6 +104,6 @@ int main(int argc, char *argv[])
     free(number_str);
     fclose(input_file);
     fclose(output_file);
-
+    printf("Программа корректно завершила работу\n");
     return E_SUCCESS;
 }
