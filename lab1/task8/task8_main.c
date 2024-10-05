@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
         return E_CANNOT_OPEN_FILE;
     }
 
-    unsigned long long int buf = INITIAL_BUFFER_SIZE;
+    unsigned long long int buf = INITIAL_SIZE;
 
     char *number_str = (char *)malloc(buf * sizeof(char));
 
@@ -96,7 +96,7 @@ int main(int argc, char *argv[])
             }
             else
             {
-                printf("ERROR: Переполнение типа, невозможнов вывести число \n");
+                printf("ERROR: Переполнение типа long long int, невозможнов вывести число \n");
                 free(number_str);
                 fclose(input_file);
                 fclose(output_file);

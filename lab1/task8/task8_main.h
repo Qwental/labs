@@ -9,7 +9,6 @@
 #include <ctype.h>
 
 #define INITIAL_SIZE 36
-#define INITIAL_BUFFER_SIZE 128
 
 
 /* ERROR CODES */

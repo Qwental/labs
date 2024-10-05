@@ -23,7 +23,7 @@ int charToValue(char ch)
 
 int findMinBase(const char *num)
 {
-    int maxDigit = 1;
+    int maxDigit = 2;
     for (int i = 0; num[i] != '\0'; ++i)
     {
         if (num[i] == ' ')
@@ -32,8 +32,11 @@ int findMinBase(const char *num)
         int value = charToValue(num[i]);
         if (value == -1)
             continue;
+
         if (value + 1 > maxDigit)
+        {
             maxDigit = value + 1;
+        }
     }
     if (maxDigit > 36)
         return 36;
