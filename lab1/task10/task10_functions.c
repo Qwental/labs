@@ -63,7 +63,6 @@ char *read_number_string()
             {
                 return NULL;
             }
-            // TODO ИСПРАИТЬ проверку realloc - DONE!
 
             char* temp_string_number = (char *)realloc(string_number, size * sizeof(char));
 

@@ -7,7 +7,6 @@ gcc task3_main.c task3_functions.c -o task3.out -lm -std=c99 -Woverflow -Wall
 
 */
 
-//TODO
 int main(int argc, char *argv[])
 {
 
@@ -31,7 +30,6 @@ int main(int argc, char *argv[])
 
     switch (flag)
     {
-        //TODO devision by zero
     case 'q':
         if ((argc != 6))
         {

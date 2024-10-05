@@ -1,14 +1,22 @@
 #include "task4_functions.h"
 
 /*
- gcc task4_main.c task4_functions.c -lm -std=c99 -Woverflow -Wall -o task4.out
+
+
+gcc task4_main.c task4_functions.c -lm -std=c99 -Woverflow -Wall -o task4.out
+
 
 ./task4.out
 
 ./task4.out -a /mnt/c/Users/Holiday/Desktop/Labs/labs/lab1/task4/test/digits
 
 ./task4.out -na /mnt/c/Users/Holiday/Desktop/Labs/labs/lab1/task4/test/digits digits
+
+./task4.out -na /mnt/c/Users/Holiday/Desktop/Labs/labs/lab1/task4/test/digits task4.out
+
 ./task4.out -na /mnt/c/Users/Holiday/Desktop/Labs/labs/lab1/task4/test/digits /mnt/c/Users/Holiday/Desktop/Labs/labs/lab1/task4/test/digits
+
+
 
 
 */
@@ -44,7 +52,6 @@ int main(int argc, char *argv[])
         }
 
         output = argv[3];
-
         if (strlen(argv[1]) != 3)
         {
             printf("ERROR: Неккорекный ввод аргументов\n");
