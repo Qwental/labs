@@ -49,7 +49,6 @@ enum Errors func_a(double x, double epsilon, double *sigma_sum)
 	{
 		res += current_f;
 		n++;
-
 		if (n >= INT_MAX - 1)
 			return E_INVALID_INPUT;
 
@@ -75,26 +74,21 @@ enum Errors func_b(double x, double epsilon, double *sigma_sum)
 	*sigma_sum = 0.0;
 
 	double current_f = 1.0;
+	int k = 0;
 	int n = 0;
-	int iter = 0;
 	double res = 0.0;
 
 	while (fabs(current_f) >= epsilon)
 	{
-
-		if (!(iter & 1))
-			res += current_f;
-		else
-			res -= current_f;
-
-		current_f *= ((x / (n+1)) * (x / (n + 1 + 1)));
+		res = (!(n & 1)) ? res + current_f : res - current_f;
+		k += 2;
+		n++;
+		if ((n >= INT_MAX - 1) || (k >= INT_MAX - 2))
+			return E_INVALID_INPUT;
+		current_f *= ((x / k) * (x / (k - 1)));
 
 		if (is_double_overflow(current_f) || is_double_overflow(res))
 			return E_TYPE_OVERFLOW;
-		n += 2;
-		iter++;
-		if (n >= INT_MAX - 2)
-			return E_INVALID_INPUT;
 	}
 	*sigma_sum = res;
 
@@ -110,23 +104,23 @@ enum Errors func_c(double x, double epsilon, double *sigma_sum)
 
 	double current_f = 1.0;
 
-	int n = 0;
-	int n3_drob = 0;
+	int n = 1;
+	int z = 3;
 
 	double res = 0.0;
 
 	while (fabs(current_f) >= epsilon)
 	{
 		res += current_f;
-		n++;
 
 		if ((n >= INT_MAX - 1))
 			return E_INVALID_INPUT;
 
-		n3_drob += 3;
-		current_f *= (((n * 27 * n * n) / ((n3_drob - 2))) * ((x * x) / ((n3_drob - 1) * (n3_drob))));
+		current_f *= (((n * 27 * n * n) / ((z - 2))) * ((x * x) / ((z - 1) * (z))));
+		z += 3;
+		n++;
 
-		if ((n3_drob >= INT_MAX - 3))
+		if ((z >= INT_MAX - 3))
 			return E_INVALID_INPUT;
 
 		if (is_double_overflow(current_f) || is_double_overflow(res))
@@ -144,28 +138,21 @@ enum Errors func_d(double x, double epsilon, double *sigma_sum)
 		return E_INVALID_INPUT;
 	*sigma_sum = 0.0;
 
-	double current_f = x * x * 0.5; // n=2 подставил
-
-	int n = 2;
-	int iter = 1;
-
+	double current_f = x * x * 0.5; // n=1 подставил
+	int k = 2;
+	int n = 1;
 	double res = 0.0;
 
 	while (fabs(current_f) > epsilon)
 	{
-
-		if (!(iter & 1))
-			res += current_f;
-		else
-			res -= current_f;
-
-		iter++;
-		n += 2;
-		if ((n >= INT_MAX - 2) || (iter >= INT_MAX - 1))
+		res = (!(n & 1)) ? res + current_f : res - current_f;
+		n++;
+		k += 2;
+		if ((k >= INT_MAX - 2) || (n >= INT_MAX - 1))
 			return E_TYPE_OVERFLOW;
 
 		// двойной фактор типо сразу считаем
-		current_f *= (((n - 1) * x) / (n)) * x;
+		current_f *= (((k - 1) * x * x) / k);
 
 		if (is_double_overflow(current_f) || is_double_overflow(res))
 			return E_TYPE_OVERFLOW;

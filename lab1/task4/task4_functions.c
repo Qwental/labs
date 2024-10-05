@@ -11,7 +11,6 @@ const char *find_file_name(const char *file_string)
     return file_name;
 }
 
-
 char *convert_to_your_base_from_10CC(int number, int base)
 {
     // обратная схема горнера с лекции
@@ -61,9 +60,15 @@ enum Errors delete_arabic_funny_numbers(const char *file_input, const char *file
     }
 
     char ch;
-    while ((ch = fgetc(file_1)) != EOF)
+    while (!feof(file_1))
+    {
+        ch = fgetc(file_1);
+        if (ch == EOF)
+            continue;
         if (!(ch >= '0' && ch <= '9'))
             fputc(ch, file_2);
+    }
+
     fclose(file_1);
     fclose(file_2);
     return E_SUCCESS;

@@ -1,6 +1,5 @@
 #include "task5_main.h"
 
-// TODO  предыд член  и сравнивать по еэписло
 
 /*
 gcc task5_main.c task5_functions.c -lm -std=c99 -Woverflow -Wall -o task5.out
@@ -43,8 +42,8 @@ int main(int argc, char *argv[])
 
 	double sigma = 0.0;
 	enum Errors err;
+	
 	// a
-
 	err = func_a(x, epsilon, &sigma);
 	if (err == E_SUCCESS)
 		printf("Ряд а): %.15lf\n", sigma);
@@ -59,8 +58,8 @@ int main(int argc, char *argv[])
 		printf("a) ERROR: Некорректный ввод\n");
 		return E_INVALID_INPUT;
 	}
-	// b
 
+	// b
 	err = (func_b(x, epsilon, &sigma));
 	if (err == E_SUCCESS)
 		printf("Ряд b): %.15lf\n", sigma);
@@ -83,7 +82,6 @@ int main(int argc, char *argv[])
 	else
 	{
 		// c
-
 		err = (func_c(x, epsilon, &sigma));
 		if (err == E_SUCCESS)
 			printf("Ряд c): %.15lf\n", sigma);

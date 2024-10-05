@@ -13,9 +13,20 @@ int main(int argc, char *argv[])
 {
     if (argc != 3)
     {
-        printf("ERROR: Неккорекный ввод, неправильное кол-во аргументов\n");
+        printf("ERROR: Неккорекный ввод, неправильное кол-во аргументов!!\n");
         return E_INVALID_ARG;
     }
+
+    // Проверка на file_name != file_name
+
+    if (strcmp(find_file_name(argv[1]), find_file_name(argv[2])) == 0)
+    {
+        printf("ERROR: Нужно ввести два файла с разными именами\n");
+        return E_INVALID_ARG;
+    }
+
+  //  puts(argv[1]);
+  //  puts(argv[2]);
 
     FILE *input_file = fopen(argv[1], "r");
 
@@ -31,13 +42,6 @@ int main(int argc, char *argv[])
         printf("ERROR: невозможно открыть файл для вывода\n");
         fclose(input_file);
         return E_CANNOT_OPEN_FILE;
-    }
-
-    // Проверка на file_name != file_name
-    if (strcmp(find_file_name(argv[1]), find_file_name(argv[2])) == 0)
-    {
-        printf("ERROR: Нужно ввести два файла с разными именами\n");
-        return E_INVALID_ARG;
     }
 
     unsigned long long int buf = INITIAL_BUFFER_SIZE;
@@ -92,7 +96,7 @@ int main(int argc, char *argv[])
             }
             else
             {
-                printf("ERROR: Неккорекный ввод \n");
+                printf("ERROR: Переполнение типа, невозможнов вывести число \n");
                 free(number_str);
                 fclose(input_file);
                 fclose(output_file);

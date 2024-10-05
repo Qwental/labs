@@ -1,11 +1,13 @@
 #include "task3_functions.h"
 
 /*
- gcc task3_main.c task3_functions.c -o task3.out -lm -std=c99 -Woverflow -Wall
+gcc task3_main.c task3_functions.c -o task3.out -lm -std=c99 -Woverflow -Wall
 
 ./task3.out
 
 */
+
+//TODO
 int main(int argc, char *argv[])
 {
 
@@ -29,6 +31,7 @@ int main(int argc, char *argv[])
 
     switch (flag)
     {
+        //TODO devision by zero
     case 'q':
         if ((argc != 6))
         {
@@ -46,6 +49,8 @@ int main(int argc, char *argv[])
         double senior_coefficient_a;
         double middle_coefficient_b;
         double junior_coefficient_c;
+
+        
 
         error = string_to_double(argv[2], &epsilon);
 
@@ -155,10 +160,10 @@ int main(int argc, char *argv[])
         }
 
         if (result)
-            printf("+) Числа %.15lf %.15lf %.15lf \n являются пифагоровой тройков при epsilon = %.15lf \n", sides_of_rightangled_triangle[0],
+            printf("+) Числа %.15lf %.15lf %.15lf \n являются сторонами  прямоугольного треуголльника при epsilon = %.15lf \n", sides_of_rightangled_triangle[0],
                    sides_of_rightangled_triangle[1], sides_of_rightangled_triangle[2], epsilon);
         else
-            printf("-)Числа %.15lf %.15lf %.15lf \n НЕ являются пифагоровой тройков при epsilon = %.15lf \n", sides_of_rightangled_triangle[0],
+            printf("-)Числа %.15lf %.15lf %.15lf \n НЕ являются сторонами прямоугольного треуголльника при epsilon = %.15lf \n", sides_of_rightangled_triangle[0],
                    sides_of_rightangled_triangle[1], sides_of_rightangled_triangle[2], epsilon);
 
         break;

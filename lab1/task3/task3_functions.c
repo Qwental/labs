@@ -139,33 +139,58 @@ enum Errors flag_t_is_sides_triangle_possible(const double eps, const double sid
 }
 
 int solve_quadratic(double epsilon, double a, double b, double c, double *root1, double *root2)
+
 {
-    double discriminant = b * b - 4 * a * c;
-
-    if (fabs(discriminant) < epsilon)
+    if (a == 0.0)
     {
-        discriminant = 0.0;
+        if (c == 0.0)
+        {
+            if (b == 0.0)
+                return 3;
+            else
+                return 3;
+        }
+        else
+        {
+            if (b == 0.0)
+                return 0;
+            else
+            {
+                *root1 = -c / (-b);
+                return 1;
+            }
+        }
     }
 
-    if (discriminant < 0)
-    {
-        return 0;
-    }
-    else if (discriminant == 0)
-    {
-        *root1 = -b / (2 * a);
-        return 1;
-    }
     else
     {
-        double sqrt_discriminant = sqrt(discriminant);
-        *root1 = (-b + sqrt_discriminant) / (2 * a);
-        *root2 = (-b - sqrt_discriminant) / (2 * a);
-        return 2;
+        double discriminant = b * b - 4 * a * c;
+
+        if (fabs(discriminant) < epsilon)
+        {
+            discriminant = 0.0;
+        }
+
+        if (discriminant < 0)
+        {
+            return 0;
+        }
+        else if (discriminant == 0)
+        {
+            *root1 = -b / (2 * a);
+            return 1;
+        }
+        else
+        {
+            double sqrt_discriminant = sqrt(discriminant);
+            *root1 = (-b + sqrt_discriminant) / (2 * a);
+            *root2 = (-b - sqrt_discriminant) / (2 * a);
+            return 2;
+        }
     }
 }
 
-enum Errors flag_q_Permutation_ABC_Print(double epsilon, double a, double b, double c, double* root1, double* root2)
+enum Errors flag_q_Permutation_ABC_Print(double epsilon, double a, double b, double c, double *root1, double *root2)
 {
     double permutations[6][3] = {{a, b, c}, {a, c, b}, {b, a, c}, {b, c, a}, {c, a, b}, {c, b, a}};
     for (int i = 0; i < 6; i++)
@@ -175,16 +200,19 @@ enum Errors flag_q_Permutation_ABC_Print(double epsilon, double a, double b, dou
         int num_roots = solve_quadratic(epsilon, permutations[i][0], permutations[i][1], permutations[i][2], root1, root2);
         puts("---------------------------------------------------------------------------------------------------");
         printf("a = %.15lf, b = %.15lf, c = %.15lf\n\n", permutations[i][0], permutations[i][1],
-		       permutations[i][2]);
+               permutations[i][2]);
+
         if (num_roots == 0)
             printf("Нет вещественных корней \n");
         else if (num_roots == 1)
-            printf("Один корень (Касание параболы): %.15lf\n", *root1);
+            printf("Один корень: %.15lf\n", *root1);
         else if (num_roots == 2)
             printf("Два корня: %.15lf, %.15lf\n", *root1, *root2);
+
+        else if (num_roots == 3)
+            printf("Бесконечное колво решений\n");
     }
     puts("---------------------------------------------------------------------------------------------------");
-
 
     return E_SUCCESS;
 }
