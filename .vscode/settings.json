@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "task4_functions.h": "c",
+        "string_view": "c",
+        "array": "c",
+        "task9_main.h": "c",
+        "initializer_list": "c",
+        "utility": "c"
+    }
+}
