@@ -87,10 +87,10 @@ void print_int_array(const int *array, int length)
 
 int compare_ints(const void *a, const void *b)
 {
-    //src:  https://en.cppreference.com/w/c/algorithm/qsort
+    // src:  https://en.cppreference.com/w/c/algorithm/qsort
     int arg1 = *(const int *)a;
     int arg2 = *(const int *)b;
-    
+
     if (arg1 < arg2)
         return -1;
     if (arg1 > arg2)
@@ -99,10 +99,9 @@ int compare_ints(const void *a, const void *b)
 
 } // return (arg1 > arg2) - (arg1 < arg2); // possible shortcut
 
+/* Функция ищет в отсортированном массиве B ближайший A[i] по значению */
 int find_nearest_number(int number_arr_i, int length, int *array_B)
 {
-    /* Массив B подется отсортированным, и бинарным поиском ищется  ближайший A[i] по
-       значению элемента из массива В*/
 
     int left = 0;
     int right = length - 1;
@@ -126,6 +125,7 @@ int find_nearest_number(int number_arr_i, int length, int *array_B)
         return array_B[0];
     else
     {
+        // ближайший
         if (abs(array_B[left] - number_arr_i) < abs(array_B[left - 1] - number_arr_i))
             return array_B[left];
         else

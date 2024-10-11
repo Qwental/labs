@@ -5,6 +5,9 @@
         "array": "c",
         "task9_main.h": "c",
         "initializer_list": "c",
-        "utility": "c"
+        "utility": "c",
+        "limits.h": "c",
+        "task6_main.h": "c",
+        "task6_functions.h": "c"
     }
 }

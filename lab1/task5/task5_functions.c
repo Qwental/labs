@@ -12,21 +12,17 @@ enum Errors is_double_overflow(double to_check)
 enum Errors string_to_double(const char *str, double *num)
 {
 	if (!str || !num)
-	{
 		return E_INVALID_INPUT;
-	}
+	
 	char *endptr;
 	double value = strtod(str, &endptr);
 
 	if (*endptr != '\0')
-	{
 		return E_INVALID_INPUT;
-	}
 
 	if (is_double_overflow(value))
-	{
 		return E_TYPE_OVERFLOW;
-	}
+
 	*num = value;
 	return E_SUCCESS;
 }

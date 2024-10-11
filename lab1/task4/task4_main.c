@@ -25,10 +25,10 @@ int main(int argc, char *argv[])
 {
 
     if ((argc <= 2))
-        {
-            printf("ERROR: Неккорекный ввод, неправильное кол-во аргументов!!!!\n");
-            return E_INVALID_ARG;
-        }
+    {
+        printf("ERROR: Неккорекный ввод, неправильное кол-во аргументов!!!!\n");
+        return E_INVALID_ARG;
+    }
 
     if (argv[1][0] != '-' && argv[1][0] != '/')
     {
@@ -164,8 +164,8 @@ int main(int argc, char *argv[])
     default:
         printf("ERROR: Некоррекный ввод аргументов, такого ФЛАГА %c не предусмотрено!\n", flag);
         if (flag_malloc)
-                free(output);
-        return E_INVALID_INPUT;
+            free(output);
+        return E_INVALID_INPUT;   
     }
 
     if (flag_malloc)

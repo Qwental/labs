@@ -85,7 +85,7 @@ int main()
             }
 
             max_num_length = current_num_length;
-            if (abs(current_number) > abs(max_number))
+            if (abs((int)current_number) > abs((int)max_number))
             {
                 max_number = current_number;
             }
