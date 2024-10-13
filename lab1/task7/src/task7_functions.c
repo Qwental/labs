@@ -125,7 +125,7 @@ ERRORS_EXIT_CODES func_flag_r(const char *path_file1,
             ch_count = 0;
             continue;
         }
-
+// TODO БУФФЕР ДИНАМИЧ
         if (!(count & 1))
         {
             // четное - вставляем лексему из второго файла
