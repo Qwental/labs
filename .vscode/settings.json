@@ -8,6 +8,14 @@
         "utility": "c",
         "limits.h": "c",
         "task6_main.h": "c",
-        "task6_functions.h": "c"
-    }
+        "task6_functions.h": "c",
+        "default_libs.h": "c",
+        "ctype.h": "c",
+        "float.h": "c",
+        "time.h": "c",
+        "default_functions.h": "c",
+        "default_libs_func_codes.h": "c",
+        "task7_functions.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }

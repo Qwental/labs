@@ -1,4 +1,5 @@
 #include "task4_functions.h"
+
 const char *find_file_name(const char *file_string)
 {
     const char *file_name = strrchr(file_string, '/');

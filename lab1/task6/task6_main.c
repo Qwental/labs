@@ -1,4 +1,5 @@
-#include "task6_functions.h"
+#include "../../include/DEFAULT_FUNCTIONS.h"
+#include "include/task6_functions.h"
 
 int main(int args, char *argv[])
 {
@@ -12,7 +13,7 @@ int main(int args, char *argv[])
         return print_Errors(error);
     if (epsilon <= 0 || epsilon > 1)
         return print_Errors(E_INVALID_EPSILON);
-    if (epsilon < 0.00000001){
+    if (epsilon < 0.000000001){
         printf("При введенном epsilon = %.15lf программа будет долго считать интегралы\n",epsilon);
         return E_INVALID_EPSILON;
     }
@@ -25,6 +26,5 @@ int main(int args, char *argv[])
     printf("Интергал c): %.15lf\n", result_c);
     double result_d = integrate_function(epsilon, function_d);
     printf("Интергал d): %.15lf\n", result_d);
-
     return E_SUCCESS;
 }

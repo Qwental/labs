@@ -1,5 +1,5 @@
-#include "task9_functions.h"
-
+#include "../../include/DEFAULT_FUNCTIONS.h"
+#include "include/task9_functions.h"
 int main(int argc, char *argv[])
 {
 
@@ -12,19 +12,13 @@ int main(int argc, char *argv[])
 
         err = string_to_int(argv[1], &a, 10);
         if (err != E_SUCCESS)
-        {
-            print_Errors(err);
-            return err;
-        }
+            return print_Errors(err);
 
         err = string_to_int(argv[2], &b, 10);
         if (err != E_SUCCESS)
-        {
-            print_Errors(err);
-            return err;
-        }
+            return print_Errors(err);
 
-        printf("%d %d \n", a, b);
+        // printf("%d %d \n", a, b);
 
         // валидация a, b
         if (a < 0 || b < 0)
@@ -70,6 +64,11 @@ int main(int argc, char *argv[])
         printf("%d\n", length_array_2);
 
         int *array_A = malloc(sizeof(int) * length_array_2 + 1);
+        
+        //int length = sizeof(*array_A)/sizeof(int);
+        //printf("Length = %d\n",length);
+        //return E_SUCCESS; 
+
         if (array_A == NULL)
         {
             print_Errors(E_MEMORY_ALLOCATION);
@@ -81,6 +80,7 @@ int main(int argc, char *argv[])
         {
             print_Errors(E_MEMORY_ALLOCATION);
             free(array_A);
+            array_A = NULL;
             return E_MEMORY_ALLOCATION;
         }
 
@@ -100,7 +100,9 @@ int main(int argc, char *argv[])
         {
             print_Errors(E_MEMORY_ALLOCATION);
             free(array_A);
+            array_A = NULL;
             free(array_B);
+            array_B = NULL;
             return E_MEMORY_ALLOCATION;
         }
         int current_a;
@@ -108,6 +110,7 @@ int main(int argc, char *argv[])
         for (int i = 0; i < length_array_2; i++)
         {
             current_a = array_A[i];
+            
             array_C[i] = current_a + find_nearest_number(current_a, length_array_2, array_B);
         }
 
@@ -120,8 +123,11 @@ int main(int argc, char *argv[])
         }
 
         free(array_A);
+        array_A = NULL;
         free(array_B);
+        array_B = NULL;
         free(array_C);
+        array_C = NULL;
     }
     else
     {
