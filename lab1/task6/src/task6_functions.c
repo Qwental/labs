@@ -20,34 +20,37 @@ double function_d(double x)
     return pow(x, x);
 }
 
-double integrate_function(double epsilon, double (*integral)(double))
+double integrate_function(double epsilon, double (*func_to_integrate)(double))
 {
-    /*double (*integral)(double) приводим указатель функции к даблу*/
     double previous_result = 1.0;
     double result = 0.0;
-    int n = 1; // devison by zero
+    int n = 1;
+
     while (fabs(result - previous_result) >= epsilon)
     {
         previous_result = result;
-        result = method_central_triangle(n, epsilon, integral);
-        n += 1;
+        result = method_central_triangle(n, epsilon, func_to_integrate);
+        n++;
     }
 
     return result;
 }
-//TODO
 double method_central_triangle(int n, double epsilon, double (*function)(double))
 {
     double a = 0.00001;
     double b = 1.0;
-    double h = (b - a) / n; // разбиение в серединке
-    double sum = function(h);
-    double x;
-    double i;
-    for (i = epsilon; i < (n - epsilon); i++) // i 1..n
+
+    double lamda = (b - a) / n; // разбиение
+
+    double sum = function(lamda);
+    double x = 0.0;
+
+    double i; // i = eps == 0.0001 == 0
+    for (i = epsilon + 1; i < (n - epsilon); i++)
     {
-        x = h * i;
+        x = lamda * i;
         sum += function(x);
     }
-    return h * sum;
+
+    return sum * lamda;
 }

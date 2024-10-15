@@ -59,7 +59,7 @@ char *read_number_string()
         if (length >= size) // увеличиваю размер строки
         {
             size *= 2;
-            if (!string_number)
+            if (string_number == NULL)
             {
                 return NULL;
             }
