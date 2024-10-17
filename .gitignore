@@ -5,6 +5,6 @@
 *.exe
 *.o
 *.xml
-build
 vscode
 cmake
+build

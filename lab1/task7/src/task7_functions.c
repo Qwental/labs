@@ -25,7 +25,7 @@ ERRORS_EXIT_CODES func_flag_r(const char *path_file1,
         (strcmp(find_file_name(path_file1), find_file_name(path_file3)) == 0))
     {
         free(leksem);
-        return print_Errors(E_SAME_FILE_NAMES);
+        return (E_SAME_FILE_NAMES);
     }
 
     FILE *file_1 = fopen(path_file1, "r");
@@ -51,6 +51,7 @@ ERRORS_EXIT_CODES func_flag_r(const char *path_file1,
         fclose(file_2);
         return E_CANNOT_OPEN_FILE;
     }
+//TODO повторить дискру
 
     // char leksem[BUFSIZ];
     char ch_file_1[2] = "\0";
@@ -245,7 +246,7 @@ ERRORS_EXIT_CODES func_flag_a(const char *path_file1,
     if ((strcmp(find_file_name(path_file1), find_file_name(path_file2)) == 0))
     {
         free(buf);
-        return print_Errors(E_SAME_FILE_NAMES);
+        return (E_SAME_FILE_NAMES);
     }
 
     FILE *file_1 = fopen(path_file1, "r");
@@ -287,6 +288,7 @@ ERRORS_EXIT_CODES func_flag_a(const char *path_file1,
     {
         symblol[0] = fgetc(file_1);
         count++;
+        
         if (count >= *bufsize)
         {
             *bufsize *= 2;
@@ -365,6 +367,7 @@ ERRORS_EXIT_CODES func_flag_a(const char *path_file1,
                 fprintf(file_out, "%s ", buf);
                 // printf("Buf : %s \n", buf);
             }
+
             else if (leksem_count % 2 == 0)
             {
                 if (string_to_lower_or_upper_case(leksem) != E_SUCCESS)
@@ -400,6 +403,8 @@ ERRORS_EXIT_CODES func_flag_a(const char *path_file1,
     fclose(file_out);
     return E_SUCCESS;
 }
+
+
 
 ERRORS_EXIT_CODES string_to_lower_or_upper_case(char *leksem)
 {
@@ -442,6 +447,8 @@ ERRORS_EXIT_CODES string_to_ascii_in_base(char *leksem, size_t base, char *buf)
         }
         // snprintf((buf,,"%s%s", convert_to_your_base_from_10CC(((int)(leksem[i])), base)));
         strcat(buf, convert_to_your_base_from_10CC(((int)(leksem[i])), base));
+        //TODO my strcat
+
     }
     return E_SUCCESS;
 }

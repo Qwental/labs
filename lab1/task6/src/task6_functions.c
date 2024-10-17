@@ -35,6 +35,7 @@ double integrate_function(double epsilon, double (*func_to_integrate)(double))
 
     return result;
 }
+
 double method_central_triangle(int n, double epsilon, double (*function)(double))
 {
     double a = 0.00001;
