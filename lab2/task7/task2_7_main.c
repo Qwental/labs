@@ -31,7 +31,7 @@ int main()
         printf("Проверка решения: F(%.15f) = %.15f\n\n", result, FUNCTION_2(result));
     }
 
-    error = dichotomy(0.8, 1.2, &result, &FUNCTION_3, epsilon);
+    error = dichotomy(0.56, 0.58, &result, &FUNCTION_3, epsilon);
     if (error == E_SUCCESS)
     {
         printf("Методом дихотомии с точностью = %.15f нашли решение: %.15f=0\n", epsilon, result);

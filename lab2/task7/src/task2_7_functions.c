@@ -12,7 +12,7 @@ double FUNCTION_2(double x)
 
 double FUNCTION_3(double x)
 {
-    return (x - 1.0) * (x - 1.0);
+    return -133 * sin(x + 1) + 133;
 }
 
 ERRORS_EXIT_CODES dichotomy(double a, double b, double *result, double (*FUNCTION)(double), const double epsilon)
