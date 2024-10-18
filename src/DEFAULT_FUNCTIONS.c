@@ -58,6 +58,9 @@ ERRORS_EXIT_CODES print_Errors(const enum Errors error)
     case E_BUFFER_OVERFLOW:
         printf("ERROR:  Переполнение буффера \n");
         return E_BUFFER_OVERFLOW;
+    case E_LONG_DOUBLE_OVERFLOW:
+        printf("ERROR:  Переполнение LONG DOUBLE \n");
+        return E_LONG_DOUBLE_OVERFLOW;
     default:
         printf("ERROR:  Неизвестный код Ошибки \n");
         return E_INVALID_INPUT;
