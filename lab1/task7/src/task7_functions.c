@@ -7,7 +7,7 @@ const char *find_file_name(const char *file_string)
     // Функция strchr ищет последнее вхождения символа
 
     if (file_name != NULL)
-        file_name++; 
+        file_name++;
     else
         file_name = file_string; // значит не нашло '/'
     return file_name;
@@ -51,19 +51,18 @@ ERRORS_EXIT_CODES func_flag_r(const char *path_file1,
         fclose(file_2);
         return E_CANNOT_OPEN_FILE;
     }
-//TODO повторить дискру
 
-    // char leksem[BUFSIZ];
+    // TODO повторить дискру
+
     char ch_file_1[2] = "\0";
     char ch_file_2[2] = "\0";
 
-    size_t count = 0;
+    int count = 1;
     int prev_is_leksem = 0;
     size_t ch_count = 0;
 
     while (!feof(file_1) || !feof(file_2))
     {
-
         if (ch_file_1[0] == EOF)
         {
             // остаток второго фала пишем
@@ -106,6 +105,7 @@ ERRORS_EXIT_CODES func_flag_r(const char *path_file1,
             ch_count = 0;
             continue;
         }
+
         if (ch_file_2[0] == EOF)
         {
             // остаток первого фала пишем
@@ -138,6 +138,7 @@ ERRORS_EXIT_CODES func_flag_r(const char *path_file1,
                     {
                         prev_is_leksem = 0;
                         fprintf(file_3, "%s ", leksem);
+                        count++;
                     }
                     break;
                 }
@@ -154,6 +155,7 @@ ERRORS_EXIT_CODES func_flag_r(const char *path_file1,
         if (!(count & 1))
         {
             // четное - вставляем лексему из второго файла
+
             while (1)
             {
 
@@ -181,6 +183,7 @@ ERRORS_EXIT_CODES func_flag_r(const char *path_file1,
                     {
                         prev_is_leksem = 0;
                         fprintf(file_3, "%s ", leksem);
+                        count++;
                     }
                     break;
                 }
@@ -217,6 +220,7 @@ ERRORS_EXIT_CODES func_flag_r(const char *path_file1,
                     {
                         prev_is_leksem = 0;
                         fprintf(file_3, "%s ", leksem);
+                        count++;
                     }
                     break;
                 }
@@ -224,7 +228,8 @@ ERRORS_EXIT_CODES func_flag_r(const char *path_file1,
                 strcat(leksem, ch_file_1);
             }
         }
-        count++;
+
+        // printf("%d %s\n",count,leksem);
         memset(leksem, 0, strlen(leksem) + 1);
         leksem[0] = '\0';
         ch_count = 0;
@@ -288,7 +293,7 @@ ERRORS_EXIT_CODES func_flag_a(const char *path_file1,
     {
         symblol[0] = fgetc(file_1);
         count++;
-        
+
         if (count >= *bufsize)
         {
             *bufsize *= 2;
@@ -404,8 +409,6 @@ ERRORS_EXIT_CODES func_flag_a(const char *path_file1,
     return E_SUCCESS;
 }
 
-
-
 ERRORS_EXIT_CODES string_to_lower_or_upper_case(char *leksem)
 {
     if (leksem == NULL)
@@ -447,8 +450,7 @@ ERRORS_EXIT_CODES string_to_ascii_in_base(char *leksem, size_t base, char *buf)
         }
         // snprintf((buf,,"%s%s", convert_to_your_base_from_10CC(((int)(leksem[i])), base)));
         strcat(buf, convert_to_your_base_from_10CC(((int)(leksem[i])), base));
-        //TODO my strcat
-
+        // TODO my strcat
     }
     return E_SUCCESS;
 }
