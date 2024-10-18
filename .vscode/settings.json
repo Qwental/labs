@@ -15,7 +15,9 @@
         "time.h": "c",
         "default_functions.h": "c",
         "default_libs_func_codes.h": "c",
-        "task7_functions.h": "c"
+        "task7_functions.h": "c",
+        "random": "c",
+        "functional": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

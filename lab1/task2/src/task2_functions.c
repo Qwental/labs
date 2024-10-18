@@ -219,7 +219,7 @@ double calculate_Composition_EulerMascheroni_constant(double epsilon)
         prev_result = result;
         k++;
         if (fmod(sqrt(k), 1.0) == 0.0) // Функция fmod вычисляет остаток от деления и возвращает значение с плавающей точкой, оставшуюся часть от целочисленного деления параметров num/denom.
-            k++;                       // типо ноль будет, а эта плоха
+            k++;                       // result - prev_res = 0, выход из цикла. Поэтому пропустим это значение k;
         // (int)n - целая часть
         result += (1.0 / pow((int)sqrt(k), 2.0)) + ((-1.0) / k);
     }
@@ -229,17 +229,17 @@ double calculate_Composition_EulerMascheroni_constant(double epsilon)
 
 long double calculate_equation_EulerMascheroni_constant(double epsilon)
 {
-
     int t = 2;
     double prev_result = 0.0;
     double result = log(2) * 0.5;
-    double p_drob_in_limit = 0.5;
+    double p_fraction_in_limit = 0.5; // fraction == дробь
     while (fabs(result - prev_result) > epsilon)
     {
         prev_result = result;
         while (!is_prime(++t))
-            p_drob_in_limit *= (1.0 - 1.0 / t);
-        result = log(t) * p_drob_in_limit;
+            p_fraction_in_limit *= (1.0 - 1.0 / t);
+
+        result = log(t) * p_fraction_in_limit;
     }
 
     return log(1 / result);
