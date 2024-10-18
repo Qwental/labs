@@ -35,7 +35,6 @@ typedef enum Errors
     E_INVALID_FLAG_ARG = 15,      /* Ошибка: Неккорекный ввод аргументов (флагов), они должны начинаться с символов '-' или '/' */
     E_SAME_FILE_NAMES = 14,       /* Ошибка: Одинаковые имена файлов */
     E_BUFFER_OVERFLOW = 16,       /* Ошибка: Переполнение буффера */
-    E_LONG_DOUBLE_OVERFLOW = 17,  /* Ошибка: Переполнение LONG DOUBLE */
 
 } ERRORS_EXIT_CODES;
 
