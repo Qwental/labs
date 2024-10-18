@@ -47,3 +47,4 @@ int main(int args, char *argv[])
     printf("%-5s%s %.15f %s%.15f %s%.15Lf\n\n", "gamma", "|", calculate_lim_EulerMascheroni_constant(epsilon), "| ",
            calculate_Composition_EulerMascheroni_constant(epsilon), "| ", calculate_equation_EulerMascheroni_constant(epsilon));
 }
+// TODO Метод Ньютона

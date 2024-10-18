@@ -15,7 +15,7 @@ message("Labs build compiler flags: " ${CMAKE_C_FLAGS})
 # LAB1
 #add_executable(task9.out lab1/task9/task9_main.c lab1/task9/task9_functions.c)
 
-add_executable(task9.out
+add_executable(task1_9.out
     lab1/task9/task9_main.c
     include/DEFAULT_LIBS_FUNC_CODES.h
     include/DEFAULT_FUNCTIONS.h
@@ -25,7 +25,7 @@ add_executable(task9.out
 )
 
 
-add_executable(task2.out
+add_executable(task1_2.out
     lab1/task2/task2_main.c
     include/DEFAULT_LIBS_FUNC_CODES.h
     include/DEFAULT_FUNCTIONS.h
@@ -34,7 +34,7 @@ add_executable(task2.out
     lab1/task2/src/task2_functions.c
 )
 
-add_executable(task6.out 
+add_executable(task1_6.out 
     lab1/task6/task6_main.c
     include/DEFAULT_LIBS_FUNC_CODES.h
     include/DEFAULT_FUNCTIONS.h
@@ -43,7 +43,7 @@ add_executable(task6.out
     lab1/task6/src/task6_functions.c
 )
 
-add_executable(task7.out 
+add_executable(task1_7.out 
     lab1/task7/task7_main.c
     include/DEFAULT_LIBS_FUNC_CODES.h
     include/DEFAULT_FUNCTIONS.h
@@ -51,3 +51,36 @@ add_executable(task7.out
     lab1/task7/include/task7_functions.h
     lab1/task7/src/task7_functions.c
 )
+
+add_executable(task2_1.out 
+    include/DEFAULT_LIBS_FUNC_CODES.h
+    include/DEFAULT_FUNCTIONS.h
+    src/DEFAULT_FUNCTIONS.c
+
+    lab2/task1/task2_1_main.c
+    lab2/task1/include/task2_1_functions.h
+    lab2/task1/src/task2_1_functions.c
+)
+
+add_executable(task2_2.out 
+    include/DEFAULT_LIBS_FUNC_CODES.h
+    include/DEFAULT_FUNCTIONS.h
+    src/DEFAULT_FUNCTIONS.c
+
+    lab2/task2/task2_2_main.c
+    lab2/task2/include/task2_2_functions.h
+    lab2/task2/src/task2_2_functions.c
+)
+
+
+add_executable(task2_7.out 
+    include/DEFAULT_LIBS_FUNC_CODES.h
+    include/DEFAULT_FUNCTIONS.h
+    src/DEFAULT_FUNCTIONS.c
+
+    lab2/task7/task2_7_main.c
+    lab2/task7/include/task2_7_functions.h
+    lab2/task7/src/task2_7_functions.c
+)
+
+
