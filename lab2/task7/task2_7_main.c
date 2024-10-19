@@ -37,4 +37,6 @@ int main()
         printf("Методом дихотомии с точностью = %.15f нашли решение: %.15f=0\n", epsilon, result);
         printf("Проверка решения: F(%.15f) = %.15f\n\n", result, FUNCTION_3(result));
     }
+
+
 }

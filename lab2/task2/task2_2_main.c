@@ -29,7 +29,7 @@ int main()
     printf("%f в степени %d равно %Lf\n", x, n, result);
 
     x = 3.0;
-    n = 150;
+    n = 5;
     result = my_fast_pow(x, n);
     printf("%f в степени %d равно %Lf\n", x, n, result);
 

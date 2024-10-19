@@ -44,6 +44,7 @@ double calculate_equation_Euler_number_e(double epsilon)
     {
         result = (limit_left + limit_right) / 2;
 
+
         if (log(result) >= 1.0) // lne
             limit_right = result;
         else

@@ -6,6 +6,7 @@ double FUNCTION_1(double x);
 
 double FUNCTION_2(double x);
 double FUNCTION_3(double x);
+double FUNCTION_4(double x);
 
 ERRORS_EXIT_CODES dichotomy(double a, double b, double *result, double (*FUNCTION)(double), const double epsilon);
 
