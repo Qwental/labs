@@ -49,7 +49,9 @@ ERRORS_EXIT_CODES cheak_files(const char *path_file_1, const char *path_file_2)
 
      st_dev -  идентификатор устройства (device ID)
 
+
     */
+   
 
     struct stat file_1, file_2; // Остальные поля не нужны
 
