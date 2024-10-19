@@ -58,7 +58,9 @@ ERRORS_EXIT_CODES print_Errors(const enum Errors error)
     case E_BUFFER_OVERFLOW:
         printf("ERROR:  Переполнение буффера \n");
         return E_BUFFER_OVERFLOW;
-
+    case E_SAME_FILES:
+        printf("ERROR: Одинаковые файлы \n");
+        return E_SAME_FILES;
     default:
         printf("ERROR:  Неизвестный код Ошибки \n");
         return E_INVALID_INPUT;
