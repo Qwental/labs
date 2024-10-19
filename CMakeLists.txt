@@ -3,7 +3,7 @@ project(fund_labs VERSION 0.1.0 LANGUAGES C)
 
 list(APPEND CMAKE_C_FLAGS "-lm -Wall -Werror -Wextra -std=c99 -g -fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment")
 
-set(CMAKE_C_FLAGS_LABS "-lm -Wall -Werror -Wextra -std=c99 -g -fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment"
+set(CMAKE_C_FLAGS_LABS "-lm  -Wall -Werror -Wextra -std=c99 -g -fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment"
     CACHE STRING "Compiler flags in labs build"
     FORCE)
 

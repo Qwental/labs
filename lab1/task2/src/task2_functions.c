@@ -44,7 +44,7 @@ double calculate_equation_Euler_number_e(double epsilon)
     {
         result = (limit_left + limit_right) / 2;
 
-        if (log(result) >= 1.0)
+        if (log(result) >= 1.0) // lne
             limit_right = result;
         else
             limit_left = result;
@@ -62,7 +62,7 @@ double calculate_lim_Pi_number(double epsilon)
     {
         n++;
         prev_result = result;
-        result = (result * 2 * 2 * n * (n - 1)) / ((2 * n - 1) * (2 * n - 1));
+        result = (result * 4 * n * (n - 1)) / ((2 * n - 1) * (2 * n - 1));
     }
     return result;
 }
@@ -83,9 +83,9 @@ double calculate_row_Pi_number(double epsilon)
 
 double calculate_equation_Pi_number(double epsilon)
 {
-    long double limit_left = 3.0;
-    long double limit_right = 4.0;
-    long double result = 0.0;
+    double limit_left = 3.0;
+    double limit_right = 4.0;
+    double result = 0.0;
     result = (limit_left + limit_right) / 2;
 
     while (fabs((sin(result))) >= epsilon)
@@ -96,7 +96,7 @@ double calculate_equation_Pi_number(double epsilon)
         else
             limit_left = result;
     }
-    return (double)result;
+    return result;
 }
 
 double calculate_lim_ln2(double epsilon)
@@ -108,7 +108,7 @@ double calculate_lim_ln2(double epsilon)
     {
         n++;
         prev_result = result;
-        result = n * (pow(2, 1.0 / n) - 1);
+        result = n * (pow(2.0, 1.0 / n) - 1);
     }
     return result;
 }
@@ -206,6 +206,8 @@ double calculate_lim_EulerMascheroni_constant(double epsilon)
     }
     return result;
 }
+// Постоянная Эйлера — Маскерони
+// lim https://math.fandom.com/ru/wiki/%D0%9F%D0%BE%D1%81%D1%82%D0%BE%D1%8F%D0%BD%D0%BD%D0%B0%D1%8F_%D0%AD%D0%B9%D0%BB%D0%B5%D1%80%D0%B0_%E2%80%94_%D0%9C%D0%B0%D1%81%D0%BA%D0%B5%D1%80%D0%BE%D0%BD%D0%B8#:~:text=%D0%9F%D0%BE%D1%81%D1%82%D0%BE%D1%8F%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%AD%CC%81%D0%B9%D0%BB%D0%B5%D1%80%D0%B0%E2%80%94%D0%9C%D0%B0%D1%81%D0%BA%D0%B5%D1%80%D0%BE%CC%81%D0%BD%D0%B8%20%D0%B8%D0%BB%D0%B8%20%D0%BF%D0%BE%D1%81%D1%82%D0%BE%D1%8F%D0%BD%D0%BD%D0%B0%D1%8F,%7D%2D%5Cln%20n%5Cright)%7D
 
 double calculate_Composition_EulerMascheroni_constant(double epsilon)
 {

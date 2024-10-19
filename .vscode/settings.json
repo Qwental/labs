@@ -17,7 +17,11 @@
         "default_libs_func_codes.h": "c",
         "task7_functions.h": "c",
         "random": "c",
-        "functional": "c"
+        "functional": "c",
+        "string": "c",
+        "task2_1_functions.h": "c",
+        "stdio.h": "c",
+        "unistd.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
