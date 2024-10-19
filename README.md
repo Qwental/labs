@@ -68,3 +68,6 @@ Total = 11/50
 + task5_9 - TODO
 + task5_10 - TODO
 
+## Автор
+
+- [@Qwental](https://github.com/Qwental)
