@@ -64,16 +64,37 @@ int main(int args, char *argv[])
         break;
 
     case 'c':
-        // size_t number_strings = args - 3;
-        // size_t seed;
-        // error = string_to_unsigned_long_int(argv[2], &seed);
-        // if ((error != E_SUCCESS) || seed == 0)
-        //     return print_Errors(error);
 
-        // char *string_c = NULL;
+        if (args <= 3)
+        {
+            return print_Errors(E_INVALID_ARG);
+        }
 
-        // printf("Результат работы флага c <строка>: <%s>\n\"%s\"\n", string_c);
-        // free(string_c);
+        size_t seed;
+        error = string_to_unsigned_long_int(argv[3], &seed);
+        if ((error != E_SUCCESS) || seed == 0)
+            return print_Errors(error);
+        
+        size_t number_strings = args - 3;
+
+        srand(seed);
+        char **strings = (char **)malloc(sizeof(char *) * number_strings);
+        if (strings == NULL)
+        {
+            return print_Errors(E_MEMORY_ALLOCATION);
+        }
+
+        for (size_t i = 0; i < number_strings; i++)
+        {
+            strings[i] = argv[2 + i];
+        }
+
+        char *string_c = NULL;
+
+        error = flag_c_string(strings, (int)number_strings, &string_c);
+        printf("Результат работы флага c <строка>: <%s>\n", string_c);
+        free(string_c);
+        free(strings);
         break;
 
     default:

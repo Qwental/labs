@@ -167,6 +167,7 @@ void my_puts(const char *string)
 }
 
 ERRORS_EXIT_CODES string_to_unsigned_long_int(const char *string, unsigned long *result)
+
 {
     if (string[0] == '-')
         return E_INVALID_INPUT;
@@ -175,12 +176,61 @@ ERRORS_EXIT_CODES string_to_unsigned_long_int(const char *string, unsigned long 
     if (*result == ULONG_MAX)
         return E_LONG_OVERFLOW;
     if (*endinp != '\0')
-        return E_LONG_OVERFLOW;
+        return E_INVALID_INPUT;
+    return E_SUCCESS;
+}
+ERRORS_EXIT_CODES flag_c_string(char *strings[], size_t length, char **output_strings)
+{
+
+    if (strings == NULL)
+    {
+        return E_DEREFENCE_NULL_POINTER;
+    }
+    int j = 0;
+    if (length > 1)
+    {
+        for (size_t i = 0; i < length; i++)
+        {
+            // Мешаем строки
+            j = rand() % length;
+            swap_strings(&strings[i], &strings[j]);
+        }
+    }
+    size_t current_str_length = 0;
+    size_t summary_length_of_strings = 0;
+    for (size_t i = 0; i < length; i++)
+    {
+        if (len_string(strings[i], &current_str_length) != E_SUCCESS)
+            return E_MEMORY_ALLOCATION;
+
+        summary_length_of_strings += current_str_length;
+    }
+
+    *output_strings = (char *)malloc(sizeof(char) * (summary_length_of_strings + 1));
+    if (*output_strings == NULL)
+        return E_MEMORY_ALLOCATION;
+        
+    size_t index = 0;
+    for (size_t i = 0; i < length; i++)
+    {
+        current_str_length = 0;
+        if (len_string(strings[i], &current_str_length))
+        {
+            free(*output_strings);
+            return E_MEMORY_ALLOCATION;
+        }
+
+        for (size_t j = 0; j < current_str_length; j++)
+            (*output_strings)[index++] = strings[i][j];
+    }
+
+    (*output_strings)[index] = '\0';
     return E_SUCCESS;
 }
 
-// ERRORS_EXIT_CODES flag_c_string(char *output_string,int number_strings, char *strings[], size_t seed)
-// {
-//     //TODO
-
-// }
+void swap_strings(char **s1, char **s2)
+{
+    char *temp = *s1;
+    *s1 = *s2;
+    *s2 = temp;
+}

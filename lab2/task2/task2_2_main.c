@@ -40,4 +40,3 @@ int main()
     printf("%f в степени %d равно %Lf\n", x, n, result);
     return E_SUCCESS;
 }
-// TODO все вопросы по функции многих перем, выучить алгоритм и понять его асимптотику, task2 gkfyitn, task7 тесты
