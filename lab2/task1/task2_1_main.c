@@ -7,6 +7,7 @@ int main(int args, char *argv[])
         return print_Errors(E_INVALID_ARG);
     if ((argv[1][0] != '-') || (argv[1][2] != '\0'))
         return print_Errors(E_INVALID_FLAG_ARG);
+
     ERRORS_EXIT_CODES error = E_SUCCESS;
 
     switch (argv[1][1])
@@ -74,7 +75,7 @@ int main(int args, char *argv[])
         error = string_to_unsigned_long_int(argv[3], &seed);
         if ((error != E_SUCCESS) || seed == 0)
             return print_Errors(error);
-        
+
         size_t number_strings = args - 3;
 
         srand(seed);

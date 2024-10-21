@@ -21,7 +21,11 @@ int main()
 
     long double result = 0.0;
     geometric_mean(INIT_SIZE + 1, &result, array[0], array[1], array[2], array[3], array[4], array[5]);
-    printf("Среднее геометрическое значений массива: %Lf\n\n\n", result);
+    printf("Среднее геометрическое значений массива: %Lf\n", result);
+    result = 0.0;
+
+    geometric_mean(INIT_SIZE + 1, &result, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0);
+    printf("Среднее геометрическое значений  1.0, 2.0, 3.0, 4.0, 5.0, 6.0: %Lf\n\n", result);
 
     double x = 2.0;
     int n = 100;
@@ -33,8 +37,8 @@ int main()
     result = my_fast_pow(x, n);
     printf("%f в степени %d равно %Lf\n", x, n, result);
 
-    x = 2;
-    n = -3;
+    x = INFINITY;
+    n = -1;
     result = my_fast_pow(x, n);
 
     printf("%f в степени %d равно %Lf\n", x, n, result);
