@@ -37,9 +37,10 @@ int main()
     result = my_fast_pow(x, n);
     printf("%f в степени %d равно %Lf\n", x, n, result);
 
-    x = INFINITY;
-    n = -1;
-    result = my_fast_pow(x, n);
+    x = 13;
+    n = 8;
+    result = my_fast_pow(x, n); 
+    
 
     printf("%f в степени %d равно %Lf\n", x, n, result);
     return E_SUCCESS;

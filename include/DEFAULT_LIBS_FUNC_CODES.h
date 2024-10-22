@@ -12,6 +12,8 @@
 #include <time.h>
 #include <float.h>
 #include <stdarg.h>
+#include <sys/stat.h> // для работы с функцией stat() и структурой stat, которая хранит информацию о файле.
+
 
 #define INITIAL_SIZE 20
 

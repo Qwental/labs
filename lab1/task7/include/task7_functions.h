@@ -3,7 +3,6 @@
 #include "../../../include/DEFAULT_FUNCTIONS.h"
 
 /* Прототипы функций ниже*/
-ERRORS_EXIT_CODES cheak_files(const char *path_file_1,const char *path_file_2);
 
 const char *find_file_name(const char *file_string);
 

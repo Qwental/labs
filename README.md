@@ -22,9 +22,9 @@ Total = 11/50
 + task1_10 - approved
 #### LAB2
 + task2_1 - done
-+ task2_2 - done
++ task2_2 - approved
 + task2_3 - TODO
-+ task2_4 - TODO
++ task2_4 - done
 + task2_5 - TODO
 + task2_6 - TODO
 + task2_7 - approved

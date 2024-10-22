@@ -17,11 +17,11 @@ ERRORS_EXIT_CODES check_overflow(long double value)
 /*
 С Лекции:
 
-va_list (char *) 
-va_start 
+va_list
+va_start
 #define va_start(ap, parm) (ap) = (char*)(&(parm) + 1) ставит указатель после последнего явно переданного параметра
 
-va_arg 
+va_arg
 #define va_arg(ap, type) ((type*)((char*)(ap) += sizeof(type))[-1] переносит указатель на размер типа и возвращает значение типа (которое находится до смещения (от туда [-1]))
 
 va_end
@@ -32,7 +32,7 @@ va_end
 /* Функция многих переменных для вычисления среднего геометрического, первый аргумент - указатель long double (результат) */
 ERRORS_EXIT_CODES geometric_mean(int count, ...)
 {
-    va_list args;          /* Список аргументов */
+    va_list args;          
     va_start(args, count); /*Иниц. списка */
     long double *composition;
     for (int i = 0; i < count; i++)
@@ -45,7 +45,7 @@ ERRORS_EXIT_CODES geometric_mean(int count, ...)
             {
                 return E_DEREFENCE_NULL_POINTER;
             }
-            *composition = 1.0; /*composition == Произведение*/
+            *composition = 1.0; /* composition по английски Произведение*/
         }
 
         else
@@ -59,7 +59,6 @@ ERRORS_EXIT_CODES geometric_mean(int count, ...)
         }
     }
     va_end(args);
-    /* Среднее геометрическое чисел — это корень n-ой степени из произведения этих чисел*/
     *composition = pow(*composition, 1.0 / count);
     return E_SUCCESS;
 }
@@ -67,7 +66,13 @@ ERRORS_EXIT_CODES geometric_mean(int count, ...)
 /* Функция быстрого возведения в степень вещественного числа */
 long double my_fast_pow(double x, int n)
 {
-    // src = https://habr.com/ru/companies/otus/articles/779396/
+
+    // предельный случай
+    if ((fabs(x) <= DBL_EPSILON) && (n < 0))
+    {
+        return INFINITY;
+    }
+
     //  Базовый случай: x^0 = 1
     if (n == 0)
         return 1.0;
