@@ -58,21 +58,31 @@ int main()
     printf("P(n=3, x=3, 1, 2, 3, 4) = %Lf\n", result);
 
     // 4.3
+
     char *result3 = NULL;
     int base = 10;
     printf("POINT 3\n");
-    print_point3(10, result3, base, "45", "11", "55", "2222", "703", "1231231", "999", "2223", "2728", "4950");
-    print_point3(2, result3, base, "0", "11");
-    print_point3(2, result3, base, "99999999999999999999999", "11");
-    print_point3(4, result3, base, "45", "55", "11", "1");
+    puts("\t Ввели в 10СС:  1, 9, 45, 55, 99, 297, 703, 999, 2223, 2728, 4879, 4950, 5050, 7272, 7777, 9999, 17344, 994708");
+    print_point3(18, result3, base, "1", "9", "45", "55", "99", "297", "703", "999", "2223", "2728", "4879", "4950", "5050", "7272", "7777", "9999", "17344", "994708");
+        puts("\t Ввели в 10СС:  0, 11");
 
+    print_point3(2, result3, base, "0", "11");
+            puts("\t Ввели в 10СС:  99999999999999999999999, 11");
+
+    print_point3(2, result3, base, "99999999999999999999999", "11");
+
+                puts("\t Ввели в 10СС: 45, 55,11 ,1");
+
+    print_point3(4, result3, base, "45", "55", "11", "1");
+    puts("\t Ввели в 12СС:  1, 9, 56, 66");
     base = 12;
     print_point3(4, result3, base, "1", "9", "56", "66");
-
+    puts("\t Ввели в 16СС:  1, 6, A, F, 5B, 78, D5D5");
     base = 16;
-    print_point3(8, result3, base, "1", "6", "0", "A", "F", "33", "111", "55");
+    print_point3(8, result3, base, "1", "6", "A", "F", "55", "5B", "78", "D5D5");
+    puts("\t Ввели в 16СС: FFFF, -12, 2D02E, 345353");
+    print_point3(4, result3, base, "FFFF", "-12", "2D02E", "345353");
 
-    free(result3);
 
     return E_SUCCESS;
 }

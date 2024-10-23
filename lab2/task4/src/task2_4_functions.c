@@ -127,7 +127,10 @@ ERRORS_EXIT_CODES number_is_Kaprekar(const char *string_number, int base)
     error = string_to_long_long_int(string_number, &number, base);
     if (error != E_SUCCESS)
         return error;
-
+    if (number == 1)
+    {
+        return E_SUCCESS;
+    }
     if (number <= 0)
         return E_FALSE;
 
@@ -143,55 +146,63 @@ ERRORS_EXIT_CODES number_is_Kaprekar(const char *string_number, int base)
         return E_DEREFENCE_NULL_POINTER;
     }
 
-    size_t k = (size_t)(len_square / 2);
+    // size_t k = (size_t)(len_square / 2);
     long long int left_num = 0;
     long long int right_num = 0;
 
-    char *left = (char *)malloc(sizeof(char) * (k + 1)); // +1 для '\0'
-    if (left == NULL)
+    char *left = NULL;
+    char *right = NULL;
+    for (size_t split_pos = 1; split_pos < len_square; split_pos++)
     {
-        return E_MEMORY_ALLOCATION;
-    }
-    char *right = (char *)malloc(sizeof(char) * (len_square - k + 1));
-    if (right == NULL)
-    {
-        free(left);
-        return E_MEMORY_ALLOCATION;
-    }
+        left = (char *)malloc(sizeof(char) * (split_pos + 1)); // +1 для '\0'
+        if (left == NULL)
+        {
+            return E_MEMORY_ALLOCATION;
+        }
+        right = (char *)malloc(sizeof(char) * (len_square - split_pos + 1));
+        if (right == NULL)
+        {
+            free(left);
+            return E_MEMORY_ALLOCATION;
+        }
 
-    // Заполняем левую
-    strncpy(left, string_square_in_base, k);
-    left[k] = '\0';
+        // Заполняем левую
+        strncpy(left, string_square_in_base, split_pos);
+        left[split_pos] = '\0';
+        // Заполняем правую
+        strncpy(right, string_square_in_base + split_pos, len_square - split_pos);
+        right[len_square - split_pos] = '\0';
 
-    // Заполняем правую
-    strcpy(right, string_square_in_base + k); // правая начинается с индекса k
+        // Преобразуем обе части в 10cc
+        error = convert_to_decimal(left, base, &left_num);
+        if (error != E_SUCCESS)
+        {
+            free(left);
+            free(right);
+            return error;
+        }
 
-    // Преобразуем обе части в 10cc
-    error = convert_to_decimal(left, base, &left_num);
-    if (error != E_SUCCESS)
-    {
+        error = convert_to_decimal(right, base, &right_num);
+        if (error != E_SUCCESS)
+        {
+            free(left);
+            free(right);
+            return error;
+        }
+
+        // printf("%lld + %lld  = %lld\n", left_num, right_num, right_num + left_num);
+
+        // Проверяем условие Капрекара
+        if ((left_num + right_num == number))
+        {
+            free(left);
+            free(right);
+            return E_SUCCESS; // Это число Капрекара
+        }
         free(left);
         free(right);
-        return error;
-    }
-    error = convert_to_decimal(right, base, &right_num);
-    if (error != E_SUCCESS)
-    {
-        free(left);
-        free(right);
-        return error;
     }
 
-    // Проверяем условие Капрекара
-    if ((left_num + right_num == number) && (right_num != 0))
-    {
-        free(left);
-        free(right);
-        return E_SUCCESS; // Это число Капрекара
-    }
-
-    free(left);
-    free(right);
     return E_FALSE; // Это не число Капрекара
 }
 

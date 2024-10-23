@@ -76,6 +76,7 @@ ERRORS_EXIT_CODES convert_to_decimal(char *number_string, int base, long long in
     {
         return E_DEREFENCE_NULL_POINTER;
     }
+    *number = 0;
     int sign = 1;
     char *ptr = NULL;
     if (*number_string == '-')
