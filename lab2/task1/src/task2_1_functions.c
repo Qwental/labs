@@ -14,6 +14,9 @@ ERRORS_EXIT_CODES len_string(const char *string, size_t *length)
     return E_SUCCESS;
 }
 
+
+
+
 ERRORS_EXIT_CODES reverse_string(const char *input_string, char **output_string)
 {
 
@@ -179,6 +182,8 @@ ERRORS_EXIT_CODES string_to_unsigned_long_int(const char *string, unsigned long 
         return E_INVALID_INPUT;
     return E_SUCCESS;
 }
+
+
 ERRORS_EXIT_CODES flag_c_string(char *strings[], size_t length, char **output_strings)
 {
 
@@ -196,6 +201,7 @@ ERRORS_EXIT_CODES flag_c_string(char *strings[], size_t length, char **output_st
             swap_strings(&strings[i], &strings[j]);
         }
     }
+
     size_t current_str_length = 0;
     size_t summary_length_of_strings = 0;
     for (size_t i = 0; i < length; i++)
@@ -205,6 +211,7 @@ ERRORS_EXIT_CODES flag_c_string(char *strings[], size_t length, char **output_st
 
         summary_length_of_strings += current_str_length;
     }
+    
 
     *output_strings = (char *)malloc(sizeof(char) * (summary_length_of_strings + 1));
     if (*output_strings == NULL)

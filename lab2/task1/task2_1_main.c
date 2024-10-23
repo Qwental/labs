@@ -72,10 +72,10 @@ int main(int args, char *argv[])
         }
 
         size_t seed;
-        error = string_to_unsigned_long_int(argv[3], &seed);
+        error = string_to_unsigned_long_int(argv[3], &seed); // треться строка <str1 == flag > <str2> <str3==seed> <str4> <...>
         if ((error != E_SUCCESS) || seed == 0)
             return print_Errors(error);
-
+        printf("seed = %zu\n", seed);
         size_t number_strings = args - 3;
 
         srand(seed);
@@ -85,9 +85,13 @@ int main(int args, char *argv[])
             return print_Errors(E_MEMORY_ALLOCATION);
         }
 
-        for (size_t i = 0; i < number_strings; i++)
+        strings[0] = argv[2];
+        // puts(argv[2]);
+
+        for (size_t i = 1; i < number_strings; i++)
         {
-            strings[i] = argv[2 + i];
+            strings[i] = argv[i + 3];
+            // puts(argv[3 + i]);
         }
 
         char *string_c = NULL;
