@@ -1,5 +1,5 @@
 #ifndef __DEFAULT_FUNCTIONS_h__
-#define __DEFAULT_FUNCTIONS_h__ 
+#define __DEFAULT_FUNCTIONS_h__
 
 #include "DEFAULT_LIBS_FUNC_CODES.h"
 
@@ -25,8 +25,11 @@ ERRORS_EXIT_CODES is_double_overflow(double to_check);
 ERRORS_EXIT_CODES string_to_int(const char *str_number, int *int_result_number, int base);
 
 /* Проверка на разные файлы */
-ERRORS_EXIT_CODES cheak_files(const char *path_file_1,const char *path_file_2);
+ERRORS_EXIT_CODES cheak_files(const char *path_file_1, const char *path_file_2);
 
+/* Проверка переполнения long long int при умножении*/
+ERRORS_EXIT_CODES overflow_long_product_of_a_b(long long a, long long b);
 
+char *convert_to_your_base_from_10CC_longlongint(long long int number, int base);
 
-#endif // __DEFAULT_FUNCTIONS_h__ 
+#endif // __DEFAULT_FUNCTIONS_h__

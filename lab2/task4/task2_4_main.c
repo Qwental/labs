@@ -5,6 +5,8 @@ int main()
 {
 
     // 4.1
+    printf("POINT 1\n");
+
     coord_point p1 = (coord_point){0, 0};
     coord_point p2 = (coord_point){4, 0};
     coord_point p3 = (coord_point){5, 3};
@@ -40,6 +42,8 @@ int main()
         printf("Вывод функции: НЕ ВЫПУКЛЫЙ\n");
 
     // 4.2
+    printf("POINT 2\n");
+
     ERRORS_EXIT_CODES error;
     long double result = 0;
     error = polynomial(&result, 2, 2.0, 3.0, 4.0, 1.0);
@@ -54,6 +58,21 @@ int main()
     printf("P(n=3, x=3, 1, 2, 3, 4) = %Lf\n", result);
 
     // 4.3
+    char *result3 = NULL;
+    int base = 10;
+    printf("POINT 3\n");
+    print_point3(10, result3, base, "45", "11", "55", "2222", "703", "1231231", "999", "2223", "2728", "4950");
+    print_point3(2, result3, base, "0", "11");
+    print_point3(2, result3, base, "99999999999999999999999", "11");
+    print_point3(4, result3, base, "45", "55", "11", "1");
+
+    base = 12;
+    print_point3(4, result3, base, "1", "9", "56", "66");
+
+    base = 16;
+    print_point3(8, result3, base, "1", "6", "0", "A", "F", "33", "111", "55");
+
+    free(result3);
 
     return E_SUCCESS;
 }

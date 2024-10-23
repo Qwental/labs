@@ -16,7 +16,11 @@ int cross_composition(coord_point A, coord_point B, coord_point C);
 ERRORS_EXIT_CODES polynomial(long double *polynomial_result_x, int n, double x, ...);
 long double my_fast_pow(double x, int n);
 
-ERRORS_EXIT_CODES is_kaprekar(int count_numbers, char *result, int base, ...);
+ERRORS_EXIT_CODES number_is_Kaprekar(const char *string_number, int base);
+
+ERRORS_EXIT_CODES len_string(const char *string, size_t *length);
+
+ERRORS_EXIT_CODES print_point3(int count_numbers, char *result, int base, ...);
 
 #endif // __task2_4_functions_H__
 

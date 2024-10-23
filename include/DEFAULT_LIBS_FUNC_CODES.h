@@ -16,6 +16,7 @@
 
 
 #define INITIAL_SIZE 20
+#define INIT_SIZE_SMALL 10
 
 /* ERRORS_EXIT_CODES или enum Errors - КОДЫ ВОЗВРАТА ДЛЯ ФУНКЦИЙ */
 typedef enum Errors
@@ -38,6 +39,7 @@ typedef enum Errors
     E_SAME_FILE_NAMES = 14,       /* Ошибка: Одинаковые имена файлов */
     E_BUFFER_OVERFLOW = 16,       /* Ошибка: Переполнение буффера */
     E_SAME_FILES = 17, /* Ошибка: Ввод одинковых файлов */
+    E_FALSE = 18, /* BOOL_FALSE */
 
 } ERRORS_EXIT_CODES;
 

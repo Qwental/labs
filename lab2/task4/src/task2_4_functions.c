@@ -113,63 +113,158 @@ long double my_fast_pow(double x, int n)
 }
 
 // Функция для проверки, является ли число Капрекара
-ERRORS_EXIT_CODES is_kaprekar(int count_numbers, char *result, int base, ...)
+ERRORS_EXIT_CODES number_is_Kaprekar(const char *string_number, int base)
 {
     if (base < 2 || base > 36)
         return E_INVALID_INPUT;
 
-    long long int len_result = INIT_SIZE;
+    if (string_number == NULL)
+        return E_DEREFENCE_NULL_POINTER;
 
-    result = (char *)malloc(sizeof(char) * len_result);
+    ERRORS_EXIT_CODES error;
+
+    long long int number;
+    error = string_to_long_long_int(string_number, &number, base);
+    if (error != E_SUCCESS)
+        return error;
+
+    if (number <= 0)
+        return E_FALSE;
+
+    if (overflow_long_product_of_a_b(number, number) != E_SUCCESS)
+        return E_LONG_OVERFLOW;
+
+    size_t square = (size_t)(number * number);
+    char *string_square_in_base = convert_to_your_base_from_10CC_longlongint(square, base);
+
+    size_t len_square = 0;
+    if (len_string(string_square_in_base, &len_square) != E_SUCCESS)
+    {
+        return E_DEREFENCE_NULL_POINTER;
+    }
+
+    size_t k = (size_t)(len_square / 2);
+    long long int left_num = 0;
+    long long int right_num = 0;
+
+    char *left = (char *)malloc(sizeof(char) * (k + 1)); // +1 для '\0'
+    if (left == NULL)
+    {
+        return E_MEMORY_ALLOCATION;
+    }
+    char *right = (char *)malloc(sizeof(char) * (len_square - k + 1));
+    if (right == NULL)
+    {
+        free(left);
+        return E_MEMORY_ALLOCATION;
+    }
+
+    // Заполняем левую
+    strncpy(left, string_square_in_base, k);
+    left[k] = '\0';
+
+    // Заполняем правую
+    strcpy(right, string_square_in_base + k); // правая начинается с индекса k
+
+    // Преобразуем обе части в 10cc
+    error = convert_to_decimal(left, base, &left_num);
+    if (error != E_SUCCESS)
+    {
+        free(left);
+        free(right);
+        return error;
+    }
+    error = convert_to_decimal(right, base, &right_num);
+    if (error != E_SUCCESS)
+    {
+        free(left);
+        free(right);
+        return error;
+    }
+
+    // Проверяем условие Капрекара
+    if ((left_num + right_num == number) && (right_num != 0))
+    {
+        free(left);
+        free(right);
+        return E_SUCCESS; // Это число Капрекара
+    }
+
+    free(left);
+    free(right);
+    return E_FALSE; // Это не число Капрекара
+}
+
+ERRORS_EXIT_CODES print_point3(int count_numbers, char *result, int base, ...)
+{
+    int len_result = BUFSIZ;
+    const char *separator = ", ";
+
+    result = (char *)malloc(sizeof(char) * (len_result + 1 + strlen(separator)));
     if (result == NULL)
     {
         return E_MEMORY_ALLOCATION;
     }
     result[0] = '\0';
-
+    int flag = 0;
     va_list args;
     va_start(args, base);
     ERRORS_EXIT_CODES error;
-    long long int n;
-    for (int j = 0; j < count_numbers; j++)
+    for (int i = 0; i < count_numbers; i++)
     {
-        error = string_to_long_long_int(va_arg(args, char *), &n, 10);
-        if (error != E_SUCCESS)
+        char *string_num = va_arg(args, char *);
+        if (string_num == NULL)
         {
-            va_end(args);
-            return error;
+            free(result);
+            return E_DEREFENCE_NULL_POINTER;
         }
-        // ОБРАБОТАКА ОДНОГО ЧИСЛА
-        if (n == 1)
-            return 1; // 1 всегда является числом Капрекара
-
-        long long square = n * n;
-        int num_digits = 0;
-
-        // Вычисляем количество цифр в квадрате числа
-        long long temp = square;
-        while (temp)
+        error = number_is_Kaprekar(string_num, base);
+        if (error == E_SUCCESS)
         {
-            num_digits++;
-            temp /= 10;
-        }
-        long long power, left, right;
-        // Проверяем все возможные способы разделения квадрата на две части
-        for (int i = 1; i < num_digits; i++)
-        {
-            power = pow(10, i); // Разделяем квадрат на две части
-            left = square / power;
-            right = square % power;
-
-            // Проверяем условие числа Капрекара
-            if (right > 0 && left + right == n)
+            if (i >= len_result)
             {
-                // Число является числом Капрекара
-                strcat(result,????);
+                len_result *= 2;
+                char *temp = (char *)realloc(result, sizeof(char) * (len_result + 1 + strlen(separator)));
+                if (temp == NULL)
+                {
+                    free(result);
+                    va_end(args);
+                    return E_MEMORY_ALLOCATION;
+                }
+                result = temp;
             }
+            strcat(result, string_num);
+            strcat(result, separator);
+
+            flag = 1;
+        }
+        else if (error == E_FALSE)
+            continue;
+        else
+        {
+            free(result);
+            return print_Errors(error);
         }
     }
+    if (flag)
+        printf("Числа %s являются числами Капрекара в СС=%d\n", result, base);
+    else
+        printf("Среди введенных чисел нет чисел Капрекара\n");
+    free(result);
     va_end(args);
+    return E_SUCCESS;
+}
 
-    return E_SUCCESS; // Число не является числом Капрекара
+ERRORS_EXIT_CODES len_string(const char *string, size_t *length)
+{
+    // КОД с пары Ильи
+    if (string == NULL)
+    {
+        return E_DEREFENCE_NULL_POINTER;
+    }
+    const char *start = string;
+    while (*string++)
+        ;
+    *length = string - start - 1;
+    return E_SUCCESS;
 }

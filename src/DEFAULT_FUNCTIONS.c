@@ -125,6 +125,31 @@ char *convert_to_your_base_from_10CC(int number, int base)
     return ptr++;
 }
 
+/*Обратная схема Горнера, из 10СС longlongint в BASE CC int*/
+char *convert_to_your_base_from_10CC_longlongint(long long int number, int base)
+{
+    long long int sign = 1;
+    if (number < 0)
+    {
+        sign = -1;
+        number *= -1; // делаем модуль
+    }
+    long long int r;
+    static char buf[BUFSIZ];
+    char *ptr = buf + BUFSIZ - 1;
+    *ptr-- = 0;
+    while (number > 0)
+    {
+        *--ptr = ((r = number % base) > 9) ? r - 10 + 'A' : r + '0';
+        number /= base;
+    }
+    if (sign == -1)
+    {
+        *--ptr = '-';
+    }
+    return ptr++;
+}
+
 /*Проверка переполнения DOUBLE*/
 ERRORS_EXIT_CODES is_double_overflow(double to_check)
 {
@@ -165,6 +190,7 @@ ERRORS_EXIT_CODES string_to_long_long_int(const char *str_number, long long int 
         return E_INVALID_INPUT;
     return E_SUCCESS;
 }
+
 /* Перевод строки в int */
 ERRORS_EXIT_CODES string_to_int(const char *str_number, int *int_result_number, int base)
 {
@@ -179,12 +205,35 @@ ERRORS_EXIT_CODES string_to_int(const char *str_number, int *int_result_number, 
     return E_SUCCESS;
 }
 
+ERRORS_EXIT_CODES overflow_long_product_of_a_b(long long a, long long b)
+{
+    // Проверяем специальные случаи
+    if (a == 0 || b == 0)
+    {
+        return E_SUCCESS; // Ноль умноженный на любое число не может вызвать переполнение
+    }
 
+    // Если a > 0 и b > 0, проверяем, не превысит ли произведение LLONG_MAX
+    if (a > 0 && b > 0 && a > LLONG_MAX / b)
+    {
+        return E_LONG_OVERFLOW; // Переполнение
+    }
 
+    // Если a < 0 и b < 0, проверяем, не превысит ли произведение LLONG_MAX
+    if (a < 0 && b < 0 && a < LLONG_MAX / b)
+    {
+        return E_LONG_OVERFLOW; // Переполнение
+    }
 
+    // Если одно из чисел отрицательное, проверяем на LLONG_MIN
+    if ((a > 0 && b < 0 && b < LLONG_MIN / a) ||
+        (a < 0 && b > 0 && a < LLONG_MIN / b))
+    {
+        return E_LONG_OVERFLOW; // Переполнение
+    }
 
-
-
+    return E_SUCCESS; // Переполнения нет
+}
 
 ERRORS_EXIT_CODES cheak_files(const char *path_file_1, const char *path_file_2)
 
@@ -199,7 +248,7 @@ ERRORS_EXIT_CODES cheak_files(const char *path_file_1, const char *path_file_2)
         st_dev — идентификатор устройства, на котором находится файл.
 
         Структура stat, определенная в заголовочном файле <sys/stat.h>,
-         хранит метаданные о файлах и директориях в Unix-подобных системах (таких как Linux и macOS). 
+         хранит метаданные о файлах и директориях в Unix-подобных системах (таких как Linux и macOS).
 
         stat -  Get file attributes for FILE and put them in BUF.
 
@@ -222,7 +271,6 @@ ERRORS_EXIT_CODES cheak_files(const char *path_file_1, const char *path_file_2)
 
 
     */
-   
 
     struct stat file_1, file_2; // Остальные поля не нужны
 
@@ -266,11 +314,6 @@ struct stat {
 
 
 */
-
-
-
-
-
 
 // TODO int, long, long double overflow
 #endif
