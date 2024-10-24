@@ -63,8 +63,35 @@ int main()
     }
     else
         print_Errors(error);
+
     return E_SUCCESS;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //TODO мантисса, допкод

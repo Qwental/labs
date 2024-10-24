@@ -24,7 +24,8 @@
         "unistd.h": "c",
         "task2_4_functions.h": "c",
         "vector": "c",
-        "numbers": "c"
+        "numbers": "c",
+        "*.tcc": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

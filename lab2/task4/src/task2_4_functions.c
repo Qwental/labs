@@ -78,7 +78,7 @@ ERRORS_EXIT_CODES polynomial(long double *polynomial_result_x, int n, double x, 
         // Извлекаем следующий коэффициент
         (*polynomial_result_x) += coefficient * powx; // Добавляем a_i * x^i к результату
         powx *= x;
-        if (isinf(*polynomial_result_x) || isnan(*polynomial_result_x) || powx > (HUGE_VAL/x))
+        if (isinf(*polynomial_result_x) || isnan(*polynomial_result_x) || powx > (HUGE_VAL / x))
         {
             va_end(args);
             return E_DOUBLE_OVERFLOW;
@@ -169,7 +169,7 @@ ERRORS_EXIT_CODES number_is_Kaprekar(const char *string_number, int base)
         // printf("%lld + %lld  = %lld\n", left_num, right_num, right_num + left_num);
 
         // Проверяем условие Капрекара
-        if ((left_num + right_num == number))
+        if ((left_num + right_num == number) && (left_num != 0) && (right_num != 0))
         {
             free(left);
             free(right);

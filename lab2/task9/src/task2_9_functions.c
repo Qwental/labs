@@ -20,19 +20,13 @@ int has_number_finit_representation(double number, long long base)
     long long i = 0;
     unsigned int cheak = UINT_MAX;
 
-
     while (number != (unsigned int)(number)) //  пока не станет целым
     {
         if (number > (LDBL_MAX / base))
-        {
             return 0;
-        }
-
+        number *= base; // домнож числитеть
         if (denominator >= (ULONG_MAX / base) || (i++ > (cheak /= base)))
-        {
             return 0;
-        }
-        number *= base;      // домнож числитеть
         denominator *= base; // домнож знам
     }
 
