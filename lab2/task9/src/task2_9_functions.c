@@ -16,22 +16,26 @@ size_t gcd(size_t a, size_t b)
 int has_number_finit_representation(double number, long long base)
 {
 
-    long long denominator = 1; // denominator = знаменатель
+    size_t denominator = 1; // denominator = знаменатель
     long long i = 0;
-    int cheak = INT_MAX;
+    unsigned int cheak = UINT_MAX;
 
-    while (number != (int)number) //  пока не станет целым
+
+    while (number != (unsigned int)(number)) //  пока не станет целым
     {
         if (number > (LDBL_MAX / base))
+        {
             return 0;
+        }
 
-        if (denominator >= (LLONG_MAX / base) || (i++ > (cheak /= base)))
+        if (denominator >= (ULONG_MAX / base) || (i++ > (cheak /= base)))
+        {
             return 0;
-
-        number *= base; // домнож числитеть
+        }
+        number *= base;      // домнож числитеть
         denominator *= base; // домнож знам
     }
-    
+
     for (i = 2; i <= base; i++) // проверяем множители СС
     {
         while (base % i == 0)
@@ -41,7 +45,6 @@ int has_number_finit_representation(double number, long long base)
                 denominator /= i;
         }
     }
-
     return (denominator == 1);
 }
 
