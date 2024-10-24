@@ -29,7 +29,7 @@ Total = 11/50
 + task2_6 - TODO дек
 + task2_7 - approved
 + task2_8 - TODO
-+ task2_9 - TODO
++ task2_9 - done
 + task2_10 - TODO
 #### LAB3
 

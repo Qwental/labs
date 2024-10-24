@@ -12,28 +12,27 @@ size_t gcd(size_t a, size_t b)
     }
     return a;
 }
-
+// В CC base дробь имеет конечное представление, если её знаменатель (после приведения к простейшему виду) является произведением только тех простых чисел, которые делят base.
 int has_number_finit_representation(double number, long long base)
 {
 
-    long long denominator = 1;
-    long long j = 0;
+    long long denominator = 1; // denominator = знаменатель
+    long long i = 0;
     int cheak = INT_MAX;
 
-    while (number != (int)number)
+    while (number != (int)number) //  пока не станет целым
     {
         if (number > (LDBL_MAX / base))
             return 0;
 
-        if (denominator >= (LLONG_MAX / base) || (j++ > (cheak /= base)))
+        if (denominator >= (LLONG_MAX / base) || (i++ > (cheak /= base)))
             return 0;
 
-        number *= base;
-        denominator *= base;
+        number *= base; // домнож числитеть
+        denominator *= base; // домнож знам
     }
-
-    long long i = 0;
-    for (i = 2; (i <= base && i <= denominator); i++)
+    
+    for (i = 2; i <= base; i++) // проверяем множители СС
     {
         while (base % i == 0)
         {

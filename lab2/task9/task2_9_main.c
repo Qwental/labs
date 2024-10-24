@@ -16,12 +16,14 @@ int main()
             if ((result_array)[i] == 1)
                 printf("Представление числа %.10f в СС %d имеет конечное представление\n", (numbers_to_cheak)[i], base);
             else
-                printf("Представление числа %.10f в СС %d  имеет НЕконечное представление\n", (numbers_to_cheak)[i], base);
+                printf("Представление числа %.10f в СС %d имеет НЕконечное представление\n", (numbers_to_cheak)[i], base);
         }
 
         free(result_array);
         result_array = NULL;
     }
+    else
+        print_Errors(error);
     puts(" ");
     base = 3;
     number_of_numbers_to_cheak = 5;
@@ -34,12 +36,14 @@ int main()
             if ((result_array)[i] == 1)
                 printf("Представление числа %.10f в СС %d имеет конечное представление\n", (numbers_to_cheak2)[i], base);
             else
-                printf("Представление числа %.10f в СС %d  имеет НЕконечное представление\n", (numbers_to_cheak2)[i], base);
+                printf("Представление числа %.10f в СС %d имеет НЕконечное представление\n", (numbers_to_cheak2)[i], base);
         }
 
         free(result_array);
         result_array = NULL;
     }
+    else
+        print_Errors(error);
     puts(" ");
 
     base = 6;
@@ -59,5 +63,7 @@ int main()
         free(result_array);
         result_array = NULL;
     }
+    else
+        print_Errors(error);
     return E_SUCCESS;
 }
