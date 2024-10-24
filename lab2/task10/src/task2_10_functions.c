@@ -18,7 +18,7 @@ ERRORS_EXIT_CODES calculation_of_polynomial(double *coefficients, double a, int 
     return E_SUCCESS;
 }
 
-ERRORS_EXIT_CODES calculate_coefs_polinom_with_shift(double a, double **coefficients_f, long long degree_n_of_polindrom_, ...)
+ERRORS_EXIT_CODES calculate_coefficients_with_teylor(double a, double **coefficients_f, long long degree_n_of_polindrom_, ...)
 {
     if (degree_n_of_polindrom_ < 0)
         return E_INVALID_INPUT;
@@ -56,6 +56,7 @@ ERRORS_EXIT_CODES calculate_coefs_polinom_with_shift(double a, double **coeffici
             free(original_f_coefficients);
             return error;
         }
+
         if (n > 0)
         {
             if (factorial_n >= (ULLONG_MAX / n))
@@ -68,9 +69,10 @@ ERRORS_EXIT_CODES calculate_coefs_polinom_with_shift(double a, double **coeffici
         }
 
         current_degree--;
-
         for (i = 0; i <= current_degree; i++)
-            original_f_coefficients[i] = original_f_coefficients[i + 1] * (i + 1);
+        {
+            original_f_coefficients[i] = original_f_coefficients[i + 1] * (i + 1); // берем производную
+        }
     }
 
     free(original_f_coefficients);
