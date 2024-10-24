@@ -25,8 +25,8 @@ Total = 11/50
 + task2_2 - approved
 + task2_3 - TODO
 + task2_4 - done
-+ task2_5 - TODO
-+ task2_6 - TODO
++ task2_5 - TODO дек
++ task2_6 - TODO дек
 + task2_7 - approved
 + task2_8 - TODO
 + task2_9 - TODO

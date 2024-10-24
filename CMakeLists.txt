@@ -93,3 +93,17 @@ add_executable(task2_4.out
     lab2/task4/src/task2_4_functions.c
 )
 
+
+add_executable(task2_9.out 
+    include/DEFAULT_LIBS_FUNC_CODES.h
+    include/DEFAULT_FUNCTIONS.h
+    src/DEFAULT_FUNCTIONS.c
+
+    lab2/task9/task2_9_main.c
+    lab2/task9/include/task2_9_functions.h
+    lab2/task9/src/task2_9_functions.c
+)
+
+
+
+
