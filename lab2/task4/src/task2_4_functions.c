@@ -52,7 +52,6 @@ int is_convex(int number_of_points, ...)
         va_end(args);
         return 0;
     }
-
     return 1;
 }
 
@@ -70,46 +69,23 @@ ERRORS_EXIT_CODES polynomial(long double *polynomial_result_x, int n, double x, 
     va_list args;
     va_start(args, x); // Инициализируем список аргументов
     long double coefficient;
+
+    long double powx = 1;
+
     for (int i = 0; i <= n; i++)
     {
-        coefficient = va_arg(args, double);                        // Извлекаем следующий коэффициент
-        (*polynomial_result_x) += coefficient * my_fast_pow(x, i); // Добавляем a_i * x^i к результату
-
-        if (isinf(*polynomial_result_x) || isnan(*polynomial_result_x))
+        coefficient = va_arg(args, double);
+        // Извлекаем следующий коэффициент
+        (*polynomial_result_x) += coefficient * powx; // Добавляем a_i * x^i к результату
+        powx *= x;
+        if (isinf(*polynomial_result_x) || isnan(*polynomial_result_x) || powx > (HUGE_VAL/x))
         {
             va_end(args);
             return E_DOUBLE_OVERFLOW;
         }
     }
-
     va_end(args); // Завершаем работу с аргументами
-
     return E_SUCCESS;
-}
-
-/* Функция быстрого возведения в степень вещественного числа */
-long double my_fast_pow(double x, int n)
-{
-
-    // предельный случай
-    if ((fabs(x) <= DBL_EPSILON) && (n < 0))
-    {
-        return INFINITY;
-    }
-
-    //  Базовый случай: x^0 = 1
-    if (n == 0)
-        return 1.0;
-    // Если степень отрицательная, преобразуем её к положительной
-    if (n < 0)
-        return 1.0 / my_fast_pow(x, (-1.0) * n);
-
-    long double half = my_fast_pow(x, (int)(n / 2));
-
-    if (!(n & 1))
-        return half * half; // Если n чётное, используем half * half
-    else
-        return x * half * half; // Если n нечётное, учитываем лишнее умножение на x
 }
 
 // Функция для проверки, является ли число Капрекара
@@ -258,9 +234,9 @@ ERRORS_EXIT_CODES print_point3(int count_numbers, char *result, int base, ...)
         }
     }
     if (flag)
-        printf("Числа %s являются числами Капрекара в СС=%d\n", result, base);
+        printf("  Результат: Числа %s являются числами Капрекара в СС=%d\n", result, base);
     else
-        printf("Среди введенных чисел нет чисел Капрекара\n");
+        printf("  Результат: Среди введенных чисел нет чисел Капрекара\n");
     free(result);
     va_end(args);
     return E_SUCCESS;
@@ -278,4 +254,28 @@ ERRORS_EXIT_CODES len_string(const char *string, size_t *length)
         ;
     *length = string - start - 1;
     return E_SUCCESS;
+}
+
+/* Функция быстрого возведения в степень вещественного числа */
+long double my_fast_pow(double x, int n)
+{
+    // предельный случай
+    if ((fabs(x) <= DBL_EPSILON) && (n < 0))
+    {
+        return INFINITY;
+    }
+
+    //  Базовый случай: x^0 = 1
+    if (n == 0)
+        return 1.0;
+    // Если степень отрицательная, преобразуем её к положительной
+    if (n < 0)
+        return 1.0 / my_fast_pow(x, (-1.0) * n);
+
+    long double half = my_fast_pow(x, (int)(n / 2));
+
+    if (!(n & 1))
+        return half * half; // Если n чётное, используем half * half
+    else
+        return x * half * half; // Если n нечётное, учитываем лишнее умножение на x
 }

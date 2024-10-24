@@ -105,5 +105,56 @@ add_executable(task2_9.out
 )
 
 
+add_executable(task2_10.out 
+    include/DEFAULT_LIBS_FUNC_CODES.h
+    include/DEFAULT_FUNCTIONS.h
+    src/DEFAULT_FUNCTIONS.c
+
+    lab2/task10/task2_10_main.c
+    lab2/task10/include/task2_10_functions.h
+    lab2/task10/src/task2_10_functions.c
+)
+
+add_executable(task2_8.out 
+    include/DEFAULT_LIBS_FUNC_CODES.h
+    include/DEFAULT_FUNCTIONS.h
+    src/DEFAULT_FUNCTIONS.c
+
+    lab2/task8/task2_8_main.c
+    lab2/task8/include/task2_8_functions.h
+    lab2/task8/src/task2_8_functions.c
+)
+
+add_executable(task2_3.out 
+    include/DEFAULT_LIBS_FUNC_CODES.h
+    include/DEFAULT_FUNCTIONS.h
+    src/DEFAULT_FUNCTIONS.c
+
+    lab2/task3/task2_3_main.c
+    lab2/task3/include/task2_3_functions.h
+    lab2/task3/src/task2_3_functions.c
+)
+
+add_executable(task2_6.out 
+    include/DEFAULT_LIBS_FUNC_CODES.h
+    include/DEFAULT_FUNCTIONS.h
+    src/DEFAULT_FUNCTIONS.c
+
+    lab2/task6/task2_6_main.c
+    lab2/task6/include/task2_6_functions.h
+    lab2/task6/src/task2_6_functions.c
+)
+
+add_executable(task2_5.out 
+    include/DEFAULT_LIBS_FUNC_CODES.h
+    include/DEFAULT_FUNCTIONS.h
+    src/DEFAULT_FUNCTIONS.c
+
+    lab2/task5/task2_5_main.c
+    lab2/task5/include/task2_5_functions.h
+    lab2/task5/src/task2_5_functions.c
+)
+
+
 
 
