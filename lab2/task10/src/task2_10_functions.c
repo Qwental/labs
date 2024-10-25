@@ -71,7 +71,7 @@ ERRORS_EXIT_CODES calculate_coefficients_with_teylor(double a, double **coeffici
         current_degree--;
         for (i = 0; i <= current_degree; i++)
         {
-            original_f_coefficients[i] = original_f_coefficients[i + 1] * (i + 1); // берем производную
+            original_f_coefficients[i] = original_f_coefficients[i + 1] * (i + 1); // берем производную}
         }
     }
 

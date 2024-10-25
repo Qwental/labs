@@ -9,6 +9,7 @@
 
 
 Total = 12/50
+
 #### LAB1
 + task1_1 - approved
 + task1_2 - approved
@@ -20,19 +21,20 @@ Total = 12/50
 + task1_8 - approved
 + task1_9 - approved
 + task1_10 - approved
+
 #### LAB2
 + task2_1 - done
 + task2_2 - approved
-+ task2_3 - TODO
++ task2_3 - пипец
 + task2_4 - done
 + task2_5 - TODO дек
 + task2_6 - TODO дек
 + task2_7 - approved
-+ task2_8 - TODO
++ task2_8 - TODO дек
 + task2_9 - done
 + task2_10 - done
-#### LAB3
 
+#### LAB3
 + task3_1 - TODO
 + task3_2 - TODO
 + task3_3 - TODO
@@ -43,8 +45,8 @@ Total = 12/50
 + task3_8 - TODO
 + task3_9 - TODO
 + task3_10 - TODO
-#### LAB4
 
+#### LAB4
 + task4_1 - TODO
 + task4_2 - TODO
 + task4_3 - TODO
