@@ -14,20 +14,6 @@ ERRORS_EXIT_CODES len_string(const char *string, long long *length)
     return E_SUCCESS;
 }
 
-const char *find_file_name(const char *file_string)
-{
-    const char *file_name = strrchr(file_string, '/');
-    // Функция strchr ищет последнее вхождения символа
-
-    if (file_name != NULL)
-        file_name++;
-    else
-        file_name = file_string; // значит не нашло '/'
-    return file_name;
-}
-
-
-
 #if 1
 ERRORS_EXIT_CODES search_pattern_in_files(char *pattern, long long number_of_files, ...)
 {
@@ -35,6 +21,7 @@ ERRORS_EXIT_CODES search_pattern_in_files(char *pattern, long long number_of_fil
     {
         return E_DEREFENCE_NULL_POINTER;
     }
+
 
     long long pattern_length;
     ERRORS_EXIT_CODES error = len_string(pattern, &pattern_length);
@@ -67,12 +54,13 @@ ERRORS_EXIT_CODES search_pattern_in_files(char *pattern, long long number_of_fil
             va_end(files_ptr);
             return E_CANNOT_OPEN_FILE;
         }
+        const char *file_name = my_find_file_name(file_path);
+                puts("---------------------------------");
 
-        const char *file_name = find_file_name(file_path);
         printf("Поиск в файле: %s\n", file_name);
-
-        long long index = 0;    
-        long long position = -1; 
+        //strcat((files_array[file_i]), file_name);
+        long long index = 0;
+        long long position = -1;
         long long occurrence_count = 0;
 
         long long line_number = 1;
@@ -96,8 +84,8 @@ ERRORS_EXIT_CODES search_pattern_in_files(char *pattern, long long number_of_fil
                 if (index == pattern_length)
                 {
                     line_number -= nums_slesh_n;
-                    
-                    printf("Вхождение найдено: строка %lld, столбец %lld\n", line_number, current_line_start_column);
+
+                    printf("Вхождение подстроки найдено: строка %lld, столбец %lld\n", line_number, current_line_start_column);
                     occurrence_count++;
 
                     fseek(file_pattern_to_find, -pattern_length + 1, SEEK_CUR);
@@ -143,3 +131,36 @@ ERRORS_EXIT_CODES search_pattern_in_files(char *pattern, long long number_of_fil
     return E_SUCCESS;
 }
 #endif
+
+// Функция для создания динамического двумерного массива строк
+char **create_dynamic_array(int rows, int cols)
+{
+    char **array = (char **)malloc(rows * sizeof(char *)); // Выделяем память для строк
+    if (array == NULL)
+    {
+        perror("Ошибка выделения памяти");
+        exit(EXIT_FAILURE);
+    }
+
+    for (int i = 0; i < rows; i++)
+    {
+        array[i] = (char *)malloc(cols * sizeof(char)); // Выделяем память для каждой строки
+        if (array[i] == NULL)
+        {
+            perror("Ошибка выделения памяти");
+            exit(EXIT_FAILURE);
+        }
+    }
+
+    return array;
+}
+
+// Функция для освобождения памяти двумерного массива строк
+void free_dynamic_array(char **array, int rows)
+{
+    for (int i = 0; i < rows; i++)
+    {
+        free(array[i]);
+    }
+    free(array);
+}

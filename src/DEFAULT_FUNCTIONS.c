@@ -318,3 +318,17 @@ struct stat {
 
 // TODO int, long, long double overflow
 #endif
+
+
+
+const char *my_find_file_name(const char *file_string)
+{
+    const char *file_name = strrchr(file_string, '/');
+    // Функция strchr ищет последнее вхождения символа
+
+    if (file_name != NULL)
+        file_name++;
+    else
+        file_name = file_string; // значит не нашло '/'
+    return file_name;
+}

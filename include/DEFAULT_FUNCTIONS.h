@@ -32,4 +32,7 @@ ERRORS_EXIT_CODES overflow_long_product_of_a_b(long long a, long long b);
 
 char *convert_to_your_base_from_10CC_longlongint(long long int number, int base);
 
+const char *my_find_file_name(const char *file_string);
+
+
 #endif // __DEFAULT_FUNCTIONS_h__
