@@ -34,7 +34,11 @@ int main(int args, char *argv[])
 
         error = reverse_string(argv[2], &string_r);
         if (error != E_SUCCESS)
+        {
+            free(string_r);
+
             return print_Errors(error);
+        }
 
         printf("Перевернутая <строка>: <%s>\n", string_r);
         free(string_r);
@@ -45,7 +49,11 @@ int main(int args, char *argv[])
 
         error = string_every_odd_one_to_uppercase(argv[2], &string_u);
         if (error != E_SUCCESS)
+        {
+            free(string_u);
+
             return print_Errors(error);
+        }
         printf("Результат работы флага u <строка>: <%s>\n", string_u);
         free(string_u);
         break;
@@ -58,7 +66,10 @@ int main(int args, char *argv[])
 
         error = flag_n_string(argv[2], &string_n);
         if (error != E_SUCCESS)
+        {
             return print_Errors(error);
+            free(string_n);
+        }
 
         printf("Результат работы флага n <строка>: <%s>\n", string_n); // puts(string_n);
         free(string_n);
@@ -82,6 +93,8 @@ int main(int args, char *argv[])
         char **strings = (char **)malloc(sizeof(char *) * number_strings);
         if (strings == NULL)
         {
+            free(strings);
+
             return print_Errors(E_MEMORY_ALLOCATION);
         }
 
