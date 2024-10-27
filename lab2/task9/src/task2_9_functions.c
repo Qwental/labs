@@ -41,7 +41,6 @@ int has_number_finit_representation(double number, long long base)
     }
     return (denominator == 1);
 }
-
 ERRORS_EXIT_CODES finit_cheak(long long **result_array, int base, long long number_of_numbers_to_cheak, ...)
 {
     if (base < 2)
@@ -60,6 +59,7 @@ ERRORS_EXIT_CODES finit_cheak(long long **result_array, int base, long long numb
     for (i = 0; i < number_of_numbers_to_cheak; i++)
     {
         number = va_arg(numbers_ptr, double);
+        
 
         if (number < LDBL_EPSILON || number > 1.0)
         {
