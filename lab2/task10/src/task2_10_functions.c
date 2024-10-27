@@ -53,6 +53,7 @@ ERRORS_EXIT_CODES calculate_coefficients_with_teylor(double a, double **coeffici
         error = calculation_of_polynomial(original_f_coefficients, a, current_degree, &(changet_to_g_coefficients[n]));
         if (error != E_SUCCESS)
         {
+            free(changet_to_g_coefficients);
             free(original_f_coefficients);
             return error;
         }
@@ -61,6 +62,7 @@ ERRORS_EXIT_CODES calculate_coefficients_with_teylor(double a, double **coeffici
         {
             if (factorial_n >= (ULLONG_MAX / n))
             {
+                free(changet_to_g_coefficients);
                 free(original_f_coefficients);
                 return E_LONG_OVERFLOW;
             }

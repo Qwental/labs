@@ -45,7 +45,7 @@ int main()
         print_Errors(error);
     puts(" ");
 
-    base = 6;
+    base = 8;
     double numbers_to_cheak3[] = {0.100, 0.125, 0.3, 0.25, 0.5, 0.75, 0.857, 0.333333333333333333};
     error = finit_cheak(&result_array, base, number_of_numbers_to_cheak, 0.100, 0.125, 0.3, 0.25, 0.5, 0.75, 0.857, 0.333333333333333333);
     if (error == E_SUCCESS)

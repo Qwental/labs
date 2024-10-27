@@ -8,7 +8,7 @@
 ### Лабы
 
 
-Total = 12/50
+Total = 16/50
 
 #### LAB1
 + task1_1 - approved
@@ -23,16 +23,16 @@ Total = 12/50
 + task1_10 - approved
 
 #### LAB2
-+ task2_1 - done
++ task2_1 - done - toFix
 + task2_2 - approved
-+ task2_3 - пипец
-+ task2_4 - done
++ task2_3 - approved
++ task2_4 - approved
 + task2_5 - TODO дек
 + task2_6 - TODO дек
 + task2_7 - approved
 + task2_8 - TODO дек
-+ task2_9 - done
-+ task2_10 - done
++ task2_9 - approved
++ task2_10 - approved
 
 #### LAB3
 + task3_1 - TODO
