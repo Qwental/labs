@@ -23,7 +23,7 @@ Total = 16/50
 + task1_10 - approved
 
 #### LAB2
-+ task2_1 - done - toFix
++ task2_1 - done - Fixed
 + task2_2 - approved
 + task2_3 - approved
 + task2_4 - approved
@@ -35,28 +35,28 @@ Total = 16/50
 + task2_10 - approved
 
 #### LAB3
-+ task3_1 - TODO
-+ task3_2 - TODO
-+ task3_3 - TODO
++ task3_1 - done
++ task3_2 - TODO !
++ task3_3 - done
 + task3_4 - TODO
-+ task3_5 - TODO
++ task3_5 - done
 + task3_6 - TODO
-+ task3_7 - TODO
-+ task3_8 - TODO
-+ task3_9 - TODO
-+ task3_10 - TODO
++ task3_7 - skip
++ task3_8 - skip
++ task3_9 - skip
++ task3_10 - TODO !
 
 #### LAB4
 + task4_1 - TODO
-+ task4_2 - TODO
-+ task4_3 - TODO
-+ task4_4 - TODO
-+ task4_5 - TODO
-+ task4_6 - TODO
-+ task4_7 - TODO
-+ task4_8 - TODO
-+ task4_9 - TODO
-+ task4_10 - TODO
++ task4_2 - skip
++ task4_3 - skip
++ task4_4 - skip
++ task4_5 - skip
++ task4_6 - skip
++ task4_7 - skip
++ task4_8 - skip
++ task4_9 - skip
++ task4_10 - skip
 #### LAB5
 
 + task5_1 - TODO

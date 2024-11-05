@@ -34,5 +34,11 @@ char *convert_to_your_base_from_10CC_longlongint(long long int number, int base)
 
 const char *my_find_file_name(const char *file_string);
 
+ERRORS_EXIT_CODES string_contains_only_alphas(const char *str);
+ERRORS_EXIT_CODES string_contains_only_digits(const char *str);
 
 #endif // __DEFAULT_FUNCTIONS_h__
+
+// char buffer[BUFSIZ];
+// while (fgets(buffer, sizeof(buffer), file) != NULL)
+//sscanf(buffer, ...)

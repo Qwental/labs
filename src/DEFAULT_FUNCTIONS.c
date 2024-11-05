@@ -50,10 +50,10 @@ ERRORS_EXIT_CODES print_Errors(const enum Errors error)
         printf("ERROR:  Переполнение типа LONG DOUBLE \n");
         return E_INVALID_EPSILON;
     case E_INVALID_FLAG_ARG:
-        printf("ERROR:  Неккорекный ввод аргументов (флагов), они должны начинаться с символов '-' или '/'");
+        printf("ERROR:  Неккорекный ввод аргументов (флагов), они должны начинаться с символов '-' или '/' \n");
         return E_INVALID_FLAG_ARG;
     case E_SAME_FILE_NAMES:
-        printf("ERROR:  Одинаковые имена файлов\n");
+        printf("ERROR:  Одинаковые файлы!\n");
         return E_SAME_FILE_NAMES;
     case E_BUFFER_OVERFLOW:
         printf("ERROR:  Переполнение буффера \n");
@@ -236,6 +236,7 @@ ERRORS_EXIT_CODES overflow_long_product_of_a_b(long long a, long long b)
     return E_SUCCESS; // Переполнения нет
 }
 
+/*Проверка файлов на совпадение по Метаданным*/
 ERRORS_EXIT_CODES cheak_files(const char *path_file_1, const char *path_file_2)
 
 {
@@ -273,6 +274,31 @@ ERRORS_EXIT_CODES cheak_files(const char *path_file_1, const char *path_file_2)
 
     */
 
+    /*
+
+    struct stat
+     {
+        dev_t     st_dev;     // Идентификатор устройства, на котором находится файл
+        ino_t     st_ino;     // Номер inode файла
+        mode_t    st_mode;    // Режим доступа (права и тип файла)
+        nlink_t   st_nlink;   // Количество жестких ссылок на файл
+        uid_t     st_uid;     // Идентификатор владельца файла
+        gid_t     st_gid;     // Идентификатор группы, к которой принадлежит файл
+        dev_t     st_rdev;    // Идентификатор специального устройства (если это специальный файл)
+        off_t     st_size;    // Размер файла в байтах
+        time_t    st_atime;   // Время последнего доступа к файлу
+        time_t    st_mtime;   // Время последнего изменения содержимого файла
+        time_t    st_ctime;   // Время последнего изменения метаданных файла
+        // ... (другие поля могут зависеть от платформы)
+    };
+
+
+    */
+    if (path_file_1 == NULL || path_file_2 == NULL)
+    {
+        return E_DEREFENCE_NULL_POINTER;
+    }
+
     struct stat file_1, file_2; // Остальные поля не нужны
 
     if (stat(path_file_1, &file_1) != 0)
@@ -283,6 +309,7 @@ ERRORS_EXIT_CODES cheak_files(const char *path_file_1, const char *path_file_2)
     if (stat(path_file_2, &file_2) != 0)
     {
         printf("ERROR: НЕТ Файла по пути %s\n", path_file_2);
+        return E_INVALID_INPUT;
     }
     // .st_ino проверка, что номера inode файлов совпадают. Это уникальный идентификатор файла в пределах одного устройства
     // .st_dev проверка, что файлы находятся на одном и том же устройстве (например, на одном диске).
@@ -296,30 +323,8 @@ ERRORS_EXIT_CODES cheak_files(const char *path_file_1, const char *path_file_2)
     return E_SUCCESS;
 }
 
-/*
-
-struct stat {
-    dev_t     st_dev;     // Идентификатор устройства, на котором находится файл
-    ino_t     st_ino;     // Номер inode файла
-    mode_t    st_mode;    // Режим доступа (права и тип файла)
-    nlink_t   st_nlink;   // Количество жестких ссылок на файл
-    uid_t     st_uid;     // Идентификатор владельца файла
-    gid_t     st_gid;     // Идентификатор группы, к которой принадлежит файл
-    dev_t     st_rdev;    // Идентификатор специального устройства (если это специальный файл)
-    off_t     st_size;    // Размер файла в байтах
-    time_t    st_atime;   // Время последнего доступа к файлу
-    time_t    st_mtime;   // Время последнего изменения содержимого файла
-    time_t    st_ctime;   // Время последнего изменения метаданных файла
-    // ... (другие поля могут зависеть от платформы)
-};
-
-
-*/
-
 // TODO int, long, long double overflow
 #endif
-
-
 
 const char *my_find_file_name(const char *file_string)
 {
@@ -331,4 +336,39 @@ const char *my_find_file_name(const char *file_string)
     else
         file_name = file_string; // значит не нашло '/'
     return file_name;
+}
+
+ERRORS_EXIT_CODES string_contains_only_alphas(const char *str)
+{
+    if (str == NULL)
+    {
+        return E_DEREFENCE_NULL_POINTER;
+    }
+
+    while (*str)
+    {
+        if (!(isalpha(*str)))
+        {
+            return E_FALSE;
+        }
+        str++;
+    }
+    return E_SUCCESS;
+}
+
+ERRORS_EXIT_CODES string_contains_only_digits(const char *str)
+{
+    if (str == NULL)
+    {
+        return E_DEREFENCE_NULL_POINTER;
+    }
+    while (*str)
+    {
+        if (!isdigit((unsigned char)*str))
+        {
+            return E_FALSE;
+        }
+        str++;
+    }
+    return E_SUCCESS;
 }

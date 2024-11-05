@@ -1,9 +1,18 @@
 cmake_minimum_required(VERSION 3.5.0)
 project(fund_labs VERSION 0.1.0 LANGUAGES C)
 
-list(APPEND CMAKE_C_FLAGS "-lm -Wall -Werror -Wextra -std=c99 -g -fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment")
+# list(APPEND CMAKE_C_FLAGS "-lm -Wall -Werror -Wextra -std=c99 -g -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment")
 
-set(CMAKE_C_FLAGS_LABS "-lm  -Wall -Werror -Wextra -std=c99 -g -fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment"
+# set(CMAKE_C_FLAGS_LABS "-lm  -Wall -Werror -Wextra -std=c99 -g  -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment"
+#     CACHE STRING "Compiler flags in labs build"
+#     FORCE)
+
+
+
+#TODO -Werror
+list(APPEND CMAKE_C_FLAGS "-lm -Wall -Wextra -std=c99 -g -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment")
+
+set(CMAKE_C_FLAGS_LABS "-lm  -Wall -Wextra -std=c99 -g   -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment"
     CACHE STRING "Compiler flags in labs build"
     FORCE)
 
@@ -13,7 +22,7 @@ message("Labs build compiler flags: " ${CMAKE_C_FLAGS})
 
 # EXECUTABLES:
 # LAB1
-#add_executable(task9.out lab1/task9/task9_main.c lab1/task9/task9_functions.c)
+#add_executable(task9.out lab1/task9/task9_main.c lab1/task9/task9_functions.c) -fsanitize=address
 
 add_executable(task1_9.out
     lab1/task9/task9_main.c
@@ -155,7 +164,36 @@ add_executable(task2_5.out
     lab2/task5/src/task2_5_functions.c
 )
 
+add_executable(task3_3.out 
+    include/DEFAULT_LIBS_FUNC_CODES.h
+    include/DEFAULT_FUNCTIONS.h
+    src/DEFAULT_FUNCTIONS.c
 
+    lab3/task3/task3_3_main.c
+    lab3/task3/include/task3_3_functions.h
+    lab3/task3/src/task3_3_functions.c
+)
+# gcc /home/qwental/workspace/fund_algos/labs/src/DEFAULT_FUNCTIONS.c /home/qwental/workspace/fund_algos/labs/include/DEFAULT_FUNCTIONS.h /home/qwental/workspace/fund_algos/labs/include/DEFAULT_LIBS_FUNC_CODES.h /home/qwental/workspace/fund_algos/labs/lab3/task3/task3_3_main.c /home/qwental/workspace/fund_algos/labs/lab3/task3/include/task3_3_functions.h /home/qwental/workspace/fund_algos/labs/lab3/task3/src/task3_3_functions.c
+
+add_executable(task3_1.out 
+    include/DEFAULT_LIBS_FUNC_CODES.h
+    include/DEFAULT_FUNCTIONS.h
+    src/DEFAULT_FUNCTIONS.c
+
+    lab3/task1/task3_1_main.c
+    lab3/task1/include/task3_1_functions.h
+    lab3/task1/src/task3_1_functions.c
+)
+
+add_executable(task3_5.out 
+    include/DEFAULT_LIBS_FUNC_CODES.h
+    include/DEFAULT_FUNCTIONS.h
+    src/DEFAULT_FUNCTIONS.c
+
+    lab3/task5/task3_5_main.c
+    lab3/task5/include/task3_5_functions.h
+    lab3/task5/src/task3_5_functions.c
+)
 
 
 

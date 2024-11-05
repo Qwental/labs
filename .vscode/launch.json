@@ -5,35 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "task4",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "/home/qwental/workspace/fund_algos/labs/build/task4",
-            "args": ["-a", "/home/qwental/workspace/fund_algos/labs/lab1/task4/test/digits"],
-            "stopAtEntry": false,
-            "cwd": "${fileDirname}",
-            "environment": [],
-            "externalConsole": false,
-            "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                },
-                {
-                    "description": "Set Disassembly Flavor to Intel",
-                    "text": "-gdb-set disassembly-flavor intel",
-                    "ignoreFailures": true
-                }
-            ]
-        },
-        {
             "name": "LABS config (gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
             "program": "{command:cmake.launchTargetPath}",
-            "args": [],
+            "args": [
+                "/home/qwental/workspace/fund_algos/labs/lab3/task3/src/input.txt",
+                "-d"
+            ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
@@ -52,6 +31,5 @@
                 }
             ]
         }
-
     ]
 }

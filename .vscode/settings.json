@@ -25,7 +25,11 @@
         "task2_4_functions.h": "c",
         "vector": "c",
         "numbers": "c",
-        "*.tcc": "c"
+        "*.tcc": "c",
+        "typeinfo": "c",
+        "task3_3_functions.h": "c",
+        "task3_1_functions.h": "c",
+        "task3_5_functions.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
