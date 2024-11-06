@@ -199,7 +199,7 @@ ERRORS_EXIT_CODES string_to_int(const char *str_number, int *int_result_number, 
         return E_INVALID_INPUT;
     char *endptr;
     *int_result_number = strtol(str_number, &endptr, base);
-    if (*int_result_number == INT_MAX || *int_result_number == INT_MIN || *int_result_number == -1)
+    if (*int_result_number == INT_MAX || *int_result_number == INT_MIN )
         return E_TYPE_OVERFLOW;
     else if (*endptr != '\0')
         return E_INVALID_INPUT;
