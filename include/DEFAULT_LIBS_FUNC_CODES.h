@@ -17,6 +17,8 @@
 #define INITIAL_SIZE 20
 #define INIT_SIZE_SMALL 10
 
+#define MY_BUFFER 128 
+
 /* ERRORS_EXIT_CODES или enum Errors - КОДЫ ВОЗВРАТА ДЛЯ ФУНКЦИЙ */
 typedef enum Errors
 {

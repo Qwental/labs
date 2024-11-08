@@ -196,4 +196,16 @@ add_executable(task3_5.out
 )
 
 
+add_executable(task3_10.out 
+    include/DEFAULT_LIBS_FUNC_CODES.h
+    include/DEFAULT_FUNCTIONS.h
+    src/DEFAULT_FUNCTIONS.c
+
+    lab3/task10/task3_10_main.c
+    lab3/task10/include/task3_10_functions.h
+    lab3/task10/src/task3_10_functions.c
+)
+
+
+
 
