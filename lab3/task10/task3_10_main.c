@@ -45,6 +45,7 @@ int main(int args, char *argv[])
 
     fclose(input_file);
     fclose(output_file);
+    
 
     return print_Errors(error);
 }
