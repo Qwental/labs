@@ -29,7 +29,7 @@ ERRORS_EXIT_CODES add_FirstChild(Node *parent, const char data)
         return E_DEREFENCE_NULL_POINTER;
     }
     Node *child;
-    Node *Current_Node;
+    Node *current_node;
 
     child = (Node *)malloc(sizeof(Node));
     if (child == NULL)
@@ -48,13 +48,13 @@ ERRORS_EXIT_CODES add_FirstChild(Node *parent, const char data)
     }
     else
     {
-        Current_Node = parent->FirstChild;
+        current_node = parent->FirstChild;
 
-        while (Current_Node->NextSibling != NULL)
+        while (current_node->NextSibling != NULL)
         {
-            Current_Node = Current_Node->NextSibling;
+            current_node = current_node->NextSibling;
         }
-        Current_Node->NextSibling = child;
+        current_node->NextSibling = child;
     }
     return E_SUCCESS;
 }
@@ -66,7 +66,7 @@ ERRORS_EXIT_CODES add_NextSibling(Node *node, const char data)
         return E_DEREFENCE_NULL_POINTER;
     }
     Node *sibling;
-    Node *Current_Node;
+    Node *current_node;
 
     sibling = (Node *)malloc(sizeof(Node));
     if (sibling == NULL)
@@ -85,12 +85,12 @@ ERRORS_EXIT_CODES add_NextSibling(Node *node, const char data)
     }
     else
     {
-        Current_Node = node->NextSibling;
-        while (Current_Node->NextSibling != NULL)
+        current_node = node->NextSibling;
+        while (current_node->NextSibling != NULL)
         {
-            Current_Node = Current_Node->NextSibling;
+            current_node = current_node->NextSibling;
         }
-        Current_Node->NextSibling = sibling;
+        current_node->NextSibling = sibling;
     }
     return E_SUCCESS;
 }
@@ -118,14 +118,14 @@ void print_tree(Node *Root_Node, const int height, FILE *output_file)
     print_tree(Root_Node->NextSibling, height, output_file);
 }
 
-ERRORS_EXIT_CODES print_tree_to_file(const char *str_Expression, FILE *output_file)
+ERRORS_EXIT_CODES print_tree_to_file(const char *str_expression, FILE *output_file)
 {
-    if (str_Expression == NULL || output_file == NULL)
+    if (str_expression == NULL || output_file == NULL)
     {
         return E_DEREFENCE_NULL_POINTER;
     }
     ERRORS_EXIT_CODES error;
-    Node *Current_Node = NULL;
+    Node *current_node = NULL;
     Node *New_Node = NULL;
     Node *Temp_Node;
     Node *Root = (Node *)malloc(sizeof(Node));
@@ -133,15 +133,15 @@ ERRORS_EXIT_CODES print_tree_to_file(const char *str_Expression, FILE *output_fi
     {
         return E_MEMORY_ALLOCATION;
     }
-    Current_Node = Root;
+    current_node = Root;
 
-    create_node(Root, *str_Expression); // первая буква - 1 корень
-    str_Expression++;
-    while (*str_Expression != '\0')
+    create_node(Root, *str_expression); // первая буква - 1 корень
+    str_expression++;
+    while (*str_expression != '\0')
     {
-        if (*str_Expression == '(')
+        if (*str_expression == '(')
         {
-            str_Expression++;
+            str_expression++;
 
             New_Node = (Node *)malloc(sizeof(Node));
             if (New_Node == NULL)
@@ -149,43 +149,43 @@ ERRORS_EXIT_CODES print_tree_to_file(const char *str_Expression, FILE *output_fi
                 delete_tree(Root);
                 return E_MEMORY_ALLOCATION;
             }
-            create_node(New_Node, *str_Expression);
+            create_node(New_Node, *str_expression);
 
-            error = add_FirstChild(Current_Node, *str_Expression);
+            error = add_FirstChild(current_node, *str_expression);
             if (error != E_SUCCESS)
             {
                 delete_tree(Root);
                 free(New_Node);
                 return error;
             }
-            Current_Node = Current_Node->FirstChild;
+            current_node = current_node->FirstChild;
 
             free(New_Node);
         }
-        else if (*str_Expression == ',')
+        else if (*str_expression == ',')
         {
-            str_Expression++;
+            str_expression++;
 
-            error = add_NextSibling(Current_Node, *str_Expression);
+            error = add_NextSibling(current_node, *str_expression);
             if (error != E_SUCCESS)
             {
                 delete_tree(Root);
                 return error;
             }
 
-            Temp_Node = Current_Node;
+            Temp_Node = current_node;
             while (Temp_Node->NextSibling != NULL)
             {
                 Temp_Node = Temp_Node->NextSibling;
             }
-            Current_Node = Temp_Node;
+            current_node = Temp_Node;
         }
-        else if (*str_Expression == ')')
+        else if (*str_expression == ')')
         {
-            Current_Node = Current_Node->Parent;
+            current_node = current_node->Parent;
         }
 
-        str_Expression++;
+        str_expression++;
     }
 
     print_tree(Root, 0, output_file);

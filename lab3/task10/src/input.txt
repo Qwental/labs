@@ -2,5 +2,5 @@ A(B(E(G,T,R(W,Z)),F(L,M)),C)
 C(A(B,C),X(Y,Z))
 B(E,C,D(Z,X(P,Q,R),V),G,H(A,F,L))
 A(B(B(B,C))),X(Y,Z)
-C(A(B,C),X(Y,Z))
+B,A 
 B
