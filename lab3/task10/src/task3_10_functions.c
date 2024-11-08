@@ -135,7 +135,7 @@ ERRORS_EXIT_CODES print_tree_to_file(const char *str_Expression, FILE *output_fi
     }
     current = root;
 
-    create_node(root, *str_Expression); // первая буква - корень
+    create_node(root, *str_Expression); // первая буква - 1 корень
 
     str_Expression++;
 
@@ -153,22 +153,15 @@ ERRORS_EXIT_CODES print_tree_to_file(const char *str_Expression, FILE *output_fi
             }
             create_node(New_Node, *str_Expression);
 
-            if (root == NULL)
+            error = add_FirstChild(current, *str_Expression);
+            if (error != E_SUCCESS)
             {
-                root = New_Node;
-                current = New_Node;
+                delete_tree(root);
+                free(New_Node);
+                return error;
             }
-            else
-            {
-                error = add_FirstChild(current, *str_Expression);
-                if (error != E_SUCCESS)
-                {
-                    delete_tree(root);
-                    free(New_Node);
-                    return error;
-                }
-                current = current->FirstChild;
-            }
+            current = current->FirstChild;
+
             free(New_Node);
         }
         else if (*str_Expression == ',')
