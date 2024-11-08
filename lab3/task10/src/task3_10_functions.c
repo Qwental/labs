@@ -31,7 +31,7 @@ ERRORS_EXIT_CODES add_FirstChild(Node *parent, const char data)
     Node *child;
     Node *Current_Node;
 
-    child = malloc(sizeof(Node));
+    child = (Node *)malloc(sizeof(Node));
     if (child == NULL)
     {
         return E_MEMORY_ALLOCATION;
@@ -68,7 +68,7 @@ ERRORS_EXIT_CODES add_NextSibling(Node *node, const char data)
     Node *sibling;
     Node *Current_Node;
 
-    sibling = malloc(sizeof(Node));
+    sibling = (Node *)malloc(sizeof(Node));
     if (sibling == NULL)
     {
         return E_MEMORY_ALLOCATION;
@@ -128,7 +128,7 @@ ERRORS_EXIT_CODES print_tree_to_file(const char *str_Expression, FILE *output_fi
     Node *Current_Node = NULL;
     Node *New_Node = NULL;
     Node *Temp_Node;
-    Node *Root = malloc(sizeof(Node));
+    Node *Root = (Node *)malloc(sizeof(Node));
     if (Root == NULL)
     {
         return E_MEMORY_ALLOCATION;
@@ -143,7 +143,7 @@ ERRORS_EXIT_CODES print_tree_to_file(const char *str_Expression, FILE *output_fi
         {
             str_Expression++;
 
-            New_Node = malloc(sizeof(Node));
+            New_Node = (Node *)malloc(sizeof(Node));
             if (New_Node == NULL)
             {
                 delete_tree(Root);
