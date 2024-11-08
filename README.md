@@ -8,7 +8,7 @@
 ### Лабы
 
 
-Total = 19/50
+Total = 20/50
 
 #### LAB1
 + task1_1 - approved
@@ -44,7 +44,7 @@ Total = 19/50
 + task3_7 - skip
 + task3_8 - skip
 + task3_9 - skip
-+ task3_10 - TODO !
++ task3_10 - approved
 
 #### LAB4
 + task4_1 - TODO
