@@ -29,7 +29,7 @@ ERRORS_EXIT_CODES add_FirstChild(Node *parent, const char data)
         return E_DEREFENCE_NULL_POINTER;
     }
     Node *child;
-    Node *current;
+    Node *Current_Node;
 
     child = malloc(sizeof(Node));
     if (child == NULL)
@@ -48,13 +48,13 @@ ERRORS_EXIT_CODES add_FirstChild(Node *parent, const char data)
     }
     else
     {
-        current = parent->FirstChild;
+        Current_Node = parent->FirstChild;
 
-        while (current->NextSibling != NULL)
+        while (Current_Node->NextSibling != NULL)
         {
-            current = current->NextSibling;
+            Current_Node = Current_Node->NextSibling;
         }
-        current->NextSibling = child;
+        Current_Node->NextSibling = child;
     }
     return E_SUCCESS;
 }
@@ -66,7 +66,7 @@ ERRORS_EXIT_CODES add_NextSibling(Node *node, const char data)
         return E_DEREFENCE_NULL_POINTER;
     }
     Node *sibling;
-    Node *current;
+    Node *Current_Node;
 
     sibling = malloc(sizeof(Node));
     if (sibling == NULL)
@@ -85,12 +85,12 @@ ERRORS_EXIT_CODES add_NextSibling(Node *node, const char data)
     }
     else
     {
-        current = node->NextSibling;
-        while (current->NextSibling != NULL)
+        Current_Node = node->NextSibling;
+        while (Current_Node->NextSibling != NULL)
         {
-            current = current->NextSibling;
+            Current_Node = Current_Node->NextSibling;
         }
-        current->NextSibling = sibling;
+        Current_Node->NextSibling = sibling;
     }
     return E_SUCCESS;
 }
@@ -125,20 +125,18 @@ ERRORS_EXIT_CODES print_tree_to_file(const char *str_Expression, FILE *output_fi
         return E_DEREFENCE_NULL_POINTER;
     }
     ERRORS_EXIT_CODES error;
-    Node *current = NULL;
+    Node *Current_Node = NULL;
     Node *New_Node = NULL;
-    Node *temp;
-    Node *root = malloc(sizeof(Node));
-    if (root == NULL)
+    Node *Temp_Node;
+    Node *Root = malloc(sizeof(Node));
+    if (Root == NULL)
     {
         return E_MEMORY_ALLOCATION;
     }
-    current = root;
+    Current_Node = Root;
 
-    create_node(root, *str_Expression); // первая буква - 1 корень
-
+    create_node(Root, *str_Expression); // первая буква - 1 корень
     str_Expression++;
-
     while (*str_Expression != '\0')
     {
         if (*str_Expression == '(')
@@ -148,19 +146,19 @@ ERRORS_EXIT_CODES print_tree_to_file(const char *str_Expression, FILE *output_fi
             New_Node = malloc(sizeof(Node));
             if (New_Node == NULL)
             {
-                delete_tree(root);
+                delete_tree(Root);
                 return E_MEMORY_ALLOCATION;
             }
             create_node(New_Node, *str_Expression);
 
-            error = add_FirstChild(current, *str_Expression);
+            error = add_FirstChild(Current_Node, *str_Expression);
             if (error != E_SUCCESS)
             {
-                delete_tree(root);
+                delete_tree(Root);
                 free(New_Node);
                 return error;
             }
-            current = current->FirstChild;
+            Current_Node = Current_Node->FirstChild;
 
             free(New_Node);
         }
@@ -168,32 +166,32 @@ ERRORS_EXIT_CODES print_tree_to_file(const char *str_Expression, FILE *output_fi
         {
             str_Expression++;
 
-            error = add_NextSibling(current, *str_Expression);
+            error = add_NextSibling(Current_Node, *str_Expression);
             if (error != E_SUCCESS)
             {
-                delete_tree(root);
+                delete_tree(Root);
                 return error;
             }
 
-            temp = current;
-            while (temp->NextSibling != NULL)
+            Temp_Node = Current_Node;
+            while (Temp_Node->NextSibling != NULL)
             {
-                temp = temp->NextSibling;
+                Temp_Node = Temp_Node->NextSibling;
             }
-            current = temp;
+            Current_Node = Temp_Node;
         }
         else if (*str_Expression == ')')
         {
-            current = current->Parent;
+            Current_Node = Current_Node->Parent;
         }
 
         str_Expression++;
     }
 
-    print_tree(root, 0, output_file);
+    print_tree(Root, 0, output_file);
     fprintf(output_file, "---> ---> ---> ---> ---> ---> ---> ---> \n");
 
-    delete_tree(root);
+    delete_tree(Root);
 
     return E_SUCCESS;
 }
