@@ -11,6 +11,7 @@ int main()
     ERRORS_EXIT_CODES error = calculate_coefficients_with_teylor(2.0, &result, degree_n_of_polindrom, 1.0, -2.0, 1.0);
     if (error == E_SUCCESS)
     {
+        
         printf("Результат: \n");
         int i;
         for (i = 0; i <= degree_n_of_polindrom; ++i)

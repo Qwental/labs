@@ -13,6 +13,7 @@
                 "/home/qwental/workspace/fund_algos/labs/lab3/task3/src/input.txt",
                 "-d"
             ],
+            
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
